@@ -1,8 +1,0 @@
-This file holds work that needs to be done. Should be moved somewhere
-else eventually.
-
--- Read and write to a database.
-   -- Setup database schema.
-   -- Make program to do initial population from a master file or database.
-
--- Setup classes and other data structures we will be using.
