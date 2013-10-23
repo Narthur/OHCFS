@@ -170,6 +170,7 @@ class OHCDatabase:
                 self.c.execute('''
 		CREATE TABLE inventoryRecord(
                 inventoryRecordId INTEGER PRIMARY KEY,
+                date INTEGER NOT NULL,
                 bookId INTEGER NOT NULL,
                 quantity INTEGER NOT NULL,
                 FOREIGN KEY(bookId) REFERENCES book(bookId)
@@ -206,5 +207,23 @@ class OHCDatabase:
                 elif studentId == 0 and firstName == '' and lastName == '':
                         return None
 
+
+        def testTablePresent(self, tableName):
+                self.c.execute('SELECT count(*) FROM sqlite_master WHERE type=\'table\' AND name=\''
+                               + tableName + '\';')
+                retval = self.c.fetchone()
+                return retval[0]
+
+        def testAllTables(self):
+                tableList = ['inventoryRecord', 'student', 'vehicle',
+                             'mileageRecord', 'fuelRecord', 'expense',
+                             'cashOnHandRecord', 'bankTransaction',
+                             'advance', 'dailyStudentRecord', 'book',
+                             'bookSaleRecord']
+                for table in tableList:
+                        if self.testTablePresent(table) != 1:
+                                print 'testAllTables: Failure! ' + table + ' is not a table.'
+
+
 test = OHCDatabase()
-print test.getStudent(0, ('Steven',), '')
+test.testAllTables()
