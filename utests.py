@@ -14,4 +14,27 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-import ohcfs
+import unittest, ohcfs, database
+
+class databaseTestCase(unittest.TestCase):
+	def setUp(self):
+		testDatabase = OHCDatabase()
+
+# ToDo:
+#
+# test getStudent
+# test every table exists
+#
+# tableList = ['inventoryRecord', 'student', 'vehicle',
+#			 'mileageRecord', 'fuelRecord', 'expense',
+#			 'cashOnHandRecord', 'bankTransaction',
+#			 'advance', 'dailyStudentRecord', 'book',
+#			 'bookSaleRecord']
+
+class testInventoryRecordTableExistence(databaseTestCase):
+	def runTest(self):
+		self.assertEqual(testDatabase.testTablePresent('inventoryRecord'), 1,
+			'inventoryRecord table missing')
+
+runner = unittest.TextTestRunner()
+runner.run(testInventoryRecordTableExistence)
