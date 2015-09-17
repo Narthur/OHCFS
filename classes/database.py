@@ -205,23 +205,3 @@ class Database:
             return self.c.fetchone()
         elif studentId == 0 and firstName == '' and lastName == '':
             return None
-
-    def testTablePresent(self, tableName):
-        self.c.execute('SELECT count(*) FROM sqlite_master WHERE type=\'table\' AND name=\''
-                       + tableName + '\';')
-        retval = self.c.fetchone()
-        return retval[0]
-
-    def testAllTables(self):
-        tableList = ['inventoryRecord', 'student', 'vehicle',
-                     'mileageRecord', 'fuelRecord', 'expense',
-                     'cashOnHandRecord', 'bankTransaction',
-                     'advance', 'dailyStudentRecord', 'book',
-                     'bookSaleRecord']
-        for table in tableList:
-            if self.testTablePresent(table) != 1:
-                print 'testAllTables: Failure! ' + table + ' is not a table.'
-
-
-test = Database()
-test.testAllTables()
