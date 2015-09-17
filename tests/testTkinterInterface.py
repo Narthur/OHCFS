@@ -2,9 +2,8 @@ import unittest
 from classes import TkinterInterface
 
 class testTkinterInterface(unittest.TestCase):
-    def testExists(self):
-        TkinterInterface.TkinterInterface()
+    def setUp(self):
+        self.tk = TkinterInterface.TkinterInterface()
 
     def testHasGetRootMethod(self):
-        tkinter = TkinterInterface.TkinterInterface()
-        self.assertTrue(hasattr(tkinter, 'getRoot'))
+        self.assertTrue(hasattr(self.tk, 'getRoot'))
