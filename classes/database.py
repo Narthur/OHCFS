@@ -1,35 +1,35 @@
 import os.path
 import sqlite3
 
+
 class Database:
-        def __init__(self):
-                PATH = './ohcfs.db'
-                if os.path.isfile(PATH) != True:
-                        self.dbConnection = sqlite3.connect(PATH)
-                        self.c = self.dbConnection.cursor()
-                        self.initializeDatabase()
-                else:
-                        self.dbConnection = sqlite3.connect(PATH)
-                        self.c = self.dbConnection.cursor()
+    def __init__(self):
+        PATH = './ohcfs.db'
+        if os.path.isfile(PATH) != True:
+            self.dbConnection = sqlite3.connect(PATH)
+            self.c = self.dbConnection.cursor()
+            self.initializeDatabase()
+        else:
+            self.dbConnection = sqlite3.connect(PATH)
+            self.c = self.dbConnection.cursor()
 
+    def initializeDatabase(self):
+        self.createVehicleTable()
+        self.createMileageRecordTable()
+        self.createFuelRecordTable()
+        self.createExpenseTable()
+        self.createCashOnHandRecordTable()
+        self.createBankTransactionTable()
+        self.createStudentTable()
+        self.createAdvanceTable()
+        self.createDailyStudentRecordTable()
+        self.createBookTable()
+        self.createBookSaleRecordTable()
+        self.createInventoryRecordTable()
+        self.dbConnection.commit()
 
-        def initializeDatabase(self):
-                self.createVehicleTable()
-                self.createMileageRecordTable()
-                self.createFuelRecordTable()
-                self.createExpenseTable()
-                self.createCashOnHandRecordTable()
-                self.createBankTransactionTable()
-                self.createStudentTable()
-                self.createAdvanceTable()
-                self.createDailyStudentRecordTable()
-                self.createBookTable()
-                self.createBookSaleRecordTable()
-                self.createInventoryRecordTable()
-                self.dbConnection.commit()
-
-        def createVehicleTable(self):
-                self.c.execute('''
+    def createVehicleTable(self):
+        self.c.execute('''
                 CREATE TABLE vehicle(
                 vehicleId INTEGER PRIMARY KEY,
                 make TEXT,
@@ -40,8 +40,8 @@ class Database:
 		)
                 ''')
 
-        def createMileageRecordTable(self):
-                self.c.execute('''
+    def createMileageRecordTable(self):
+        self.c.execute('''
 		CREATE TABLE mileageRecord(
                 mileageRecordId INTEGER PRIMARY KEY,
                 vehicleId INTEGER NOT NULL,
@@ -51,8 +51,8 @@ class Database:
 		)
 		''')
 
-        def createFuelRecordTable(self):
-                self.c.execute('''
+    def createFuelRecordTable(self):
+        self.c.execute('''
 		CREATE TABLE fuelRecord(
                 fuelRecordId INTEGER PRIMARY KEY,
                 vehicleId INTEGER NOT NULL,
@@ -62,8 +62,8 @@ class Database:
 		)
 		''')
 
-        def createExpenseTable(self):
-                self.c.execute('''
+    def createExpenseTable(self):
+        self.c.execute('''
 		CREATE TABLE expense(
                 expenseId INTEGER PRIMARY KEY,
                 paymentType TEXT NOT NULL,
@@ -76,8 +76,8 @@ class Database:
 		)
 		''')
 
-        def createCashOnHandRecordTable(self):
-                self.c.execute('''
+    def createCashOnHandRecordTable(self):
+        self.c.execute('''
 		CREATE TABLE cashOnHandRecord(
                 cashOnHandRecordId INTEGER PRIMARY KEY,
                 onesTotal INTEGER,
@@ -94,8 +94,8 @@ class Database:
 		)
 		''')
 
-        def createBankTransactionTable(self):
-                self.c.execute('''
+    def createBankTransactionTable(self):
+        self.c.execute('''
 		CREATE TABLE bankTransaction(
                 transactionId INTEGER PRIMARY KEY,
                 transactionType TEXT NOT NULL,
@@ -106,8 +106,8 @@ class Database:
 		)
 		''')
 
-        def createStudentTable(self):
-                self.c.execute('''
+    def createStudentTable(self):
+        self.c.execute('''
 		CREATE TABLE student(
                 studentId INTEGER PRIMARY KEY,
                 firstName TEXT NOT NULL,
@@ -115,8 +115,8 @@ class Database:
 		)
 		''')
 
-        def createAdvanceTable(self):
-                self.c.execute('''
+    def createAdvanceTable(self):
+        self.c.execute('''
 		CREATE TABLE advance(
                 advanceId INTEGER PRIMARY KEY,
                 amount REAL NOT NULL,
@@ -126,8 +126,8 @@ class Database:
 		)
 		''')
 
-        def createDailyStudentRecordTable(self):
-                self.c.execute('''
+    def createDailyStudentRecordTable(self):
+        self.c.execute('''
 		CREATE TABLE dailyStudentRecord(
                 dailyStudentRecordId INTEGER PRIMARY KEY,
                 studentId INTEGER NOT NULL,
@@ -143,16 +143,16 @@ class Database:
 		)
 		''')
 
-        def createBookTable(self):
-                self.c.execute('''
+    def createBookTable(self):
+        self.c.execute('''
 		CREATE TABLE book(
                 bookId INTEGER PRIMARY KEY,
                 bookTitle TEXT NOT NULL
 		)
 		''')
 
-        def createBookSaleRecordTable(self):
-                self.c.execute('''
+    def createBookSaleRecordTable(self):
+        self.c.execute('''
 		CREATE TABLE bookSaleRecord(
                 dailyStudentRecordId INTEGER NOT NULL,
                 bookId INTEGER NOT NULL,
@@ -163,8 +163,8 @@ class Database:
 		)
 		''')
 
-        def createInventoryRecordTable(self):
-                self.c.execute('''
+    def createInventoryRecordTable(self):
+        self.c.execute('''
 		CREATE TABLE inventoryRecord(
                 inventoryRecordId INTEGER PRIMARY KEY,
                 date INTEGER NOT NULL,
@@ -173,53 +173,52 @@ class Database:
                 FOREIGN KEY(bookId) REFERENCES book(bookId)
 		)
 		''')
-                
-        def getStudent(self, studentId=0, firstName='', lastName=''):
-                if studentId != 0 and firstName == '' and lastName == '':
-                        self.c.execute('SELECT * FROM student WHERE studentId=?', studentId)
-                        return self.c.fetchone()
-                elif studentId == 0 and firstName != '' and lastName == '':
-                        self.c.execute('SELECT * FROM student WHERE firstName=?', firstName)
-                        return self.c.fetchone()
-                elif studentId == 0 and firstName == '' and lastName != '':
-                        self.c.execute('SELECT * FROM student WHERE lastName=?', lastName)
-                        return self.c.fetchone()
-                elif studentId != 0 and firstName != '' and lastName == '':
-                        # Check SQL syntax
-                        self.c.execute('SELECT * FROM student WHERE studentId=? AND firstName=?',
-                                       studentId, firstName)
-                        return self.c.fetchone()
-                elif studentId != 0 and firstName == '' and lastName != '':
-                        self.c.execute('SELECT * FROM student WHERE studentId=? AND lastName=?',
-                                       studentId, lastName)
-                        return self.c.fetchone()
-                elif studentId == 0 and firstName != '' and lastName != '':
-                        self.c.execute('SELECT * FROM student WHERE firstName=? AND lastName=?',
-                                       firstName, lastName)
-                        return self.c.fetchone()
-                elif studentId != 0 and firstName != '' and lastName != '':
-                        self.c.execute('SELECT * FROM student WHERE studentId=? AND firstName=? AND lastName=?',
-                                       studentId, firstName, lastName)
-                        return self.c.fetchone()
-                elif studentId == 0 and firstName == '' and lastName == '':
-                        return None
 
+    def getStudent(self, studentId=0, firstName='', lastName=''):
+        if studentId != 0 and firstName == '' and lastName == '':
+            self.c.execute('SELECT * FROM student WHERE studentId=?', studentId)
+            return self.c.fetchone()
+        elif studentId == 0 and firstName != '' and lastName == '':
+            self.c.execute('SELECT * FROM student WHERE firstName=?', firstName)
+            return self.c.fetchone()
+        elif studentId == 0 and firstName == '' and lastName != '':
+            self.c.execute('SELECT * FROM student WHERE lastName=?', lastName)
+            return self.c.fetchone()
+        elif studentId != 0 and firstName != '' and lastName == '':
+            # Check SQL syntax
+            self.c.execute('SELECT * FROM student WHERE studentId=? AND firstName=?',
+                           studentId, firstName)
+            return self.c.fetchone()
+        elif studentId != 0 and firstName == '' and lastName != '':
+            self.c.execute('SELECT * FROM student WHERE studentId=? AND lastName=?',
+                           studentId, lastName)
+            return self.c.fetchone()
+        elif studentId == 0 and firstName != '' and lastName != '':
+            self.c.execute('SELECT * FROM student WHERE firstName=? AND lastName=?',
+                           firstName, lastName)
+            return self.c.fetchone()
+        elif studentId != 0 and firstName != '' and lastName != '':
+            self.c.execute('SELECT * FROM student WHERE studentId=? AND firstName=? AND lastName=?',
+                           studentId, firstName, lastName)
+            return self.c.fetchone()
+        elif studentId == 0 and firstName == '' and lastName == '':
+            return None
 
-        def testTablePresent(self, tableName):
-                self.c.execute('SELECT count(*) FROM sqlite_master WHERE type=\'table\' AND name=\''
-                               + tableName + '\';')
-                retval = self.c.fetchone()
-                return retval[0]
+    def testTablePresent(self, tableName):
+        self.c.execute('SELECT count(*) FROM sqlite_master WHERE type=\'table\' AND name=\''
+                       + tableName + '\';')
+        retval = self.c.fetchone()
+        return retval[0]
 
-        def testAllTables(self):
-                tableList = ['inventoryRecord', 'student', 'vehicle',
-                             'mileageRecord', 'fuelRecord', 'expense',
-                             'cashOnHandRecord', 'bankTransaction',
-                             'advance', 'dailyStudentRecord', 'book',
-                             'bookSaleRecord']
-                for table in tableList:
-                        if self.testTablePresent(table) != 1:
-                                print 'testAllTables: Failure! ' + table + ' is not a table.'
+    def testAllTables(self):
+        tableList = ['inventoryRecord', 'student', 'vehicle',
+                     'mileageRecord', 'fuelRecord', 'expense',
+                     'cashOnHandRecord', 'bankTransaction',
+                     'advance', 'dailyStudentRecord', 'book',
+                     'bookSaleRecord']
+        for table in tableList:
+            if self.testTablePresent(table) != 1:
+                print 'testAllTables: Failure! ' + table + ' is not a table.'
 
 
 test = Database()
