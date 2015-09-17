@@ -1,6 +1,7 @@
 import unittest
-
+from classes import Factory
 
 class MyTestCase(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, False)
+    def testExists(self):
+        factory = Factory.Factory()
+        self.assertIsInstance(factory, Factory.Factory)
