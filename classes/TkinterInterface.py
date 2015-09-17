@@ -1,5 +1,5 @@
 from Tkinter import *
 
-class Tkinter:
+class TkinterInterface:
     def getRoot(self):
         return Tk()
