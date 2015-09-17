@@ -1,9 +1,11 @@
 import os.path
 import sqlite3
 
-
 class Database:
     def __init__(self):
+        self.connectToDb()
+
+    def connectToDb(self):
         PATH = './ohcfs.db'
         if os.path.isfile(PATH) != True:
             self.dbConnection = sqlite3.connect(PATH)
