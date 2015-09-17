@@ -15,9 +15,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
 import unittest
-
 from classes import Database
-
 
 class testDatabase(unittest.TestCase):
 	def setUp(self):
