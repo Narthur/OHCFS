@@ -19,7 +19,7 @@ import unittest
 from classes import Database
 
 
-class databaseTestCase(unittest.TestCase):
+class testDatabase(unittest.TestCase):
 	def setUp(self):
 		testDatabase = Database()
 
@@ -33,11 +33,3 @@ class databaseTestCase(unittest.TestCase):
 #			 'cashOnHandRecord', 'bankTransaction',
 #			 'advance', 'dailyStudentRecord', 'book',
 #			 'bookSaleRecord']
-
-class testInventoryRecordTableExistence(databaseTestCase):
-	def runTest(self):
-		self.assertEqual(testDatabase.testTablePresent('inventoryRecord'), 1,
-			'inventoryRecord table missing')
-
-runner = unittest.TextTestRunner()
-runner.run(testInventoryRecordTableExistence)
