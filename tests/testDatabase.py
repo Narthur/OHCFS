@@ -14,11 +14,14 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-import unittest, ohcfs, database
+import unittest
+
+from classes import Database
+
 
 class databaseTestCase(unittest.TestCase):
 	def setUp(self):
-		testDatabase = OHCDatabase()
+		testDatabase = Database()
 
 # ToDo:
 #

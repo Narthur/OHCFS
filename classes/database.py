@@ -1,10 +1,7 @@
 import os.path
 import sqlite3
 
-class OHCDatabase:
-
-        # Initialization functions fall under here.
-
+class Database:
         def __init__(self):
                 PATH = './ohcfs.db'
                 if os.path.isfile(PATH) != True:
@@ -225,5 +222,5 @@ class OHCDatabase:
                                 print 'testAllTables: Failure! ' + table + ' is not a table.'
 
 
-test = OHCDatabase()
+test = Database()
 test.testAllTables()
