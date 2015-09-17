@@ -1,2 +1,5 @@
+from Tkinter import *
+
 class Tkinter:
-    pass
+    def getRoot(self):
+        return Tk()
