@@ -1,7 +1,8 @@
 import unittest
 from classes import Database
 
-class testDatabase(unittest.TestCase):
+
+class TestDatabase(unittest.TestCase):
 	def setUp(self):
 		testDatabase = Database()
 

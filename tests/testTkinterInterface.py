@@ -1,7 +1,8 @@
 import unittest
 from classes import TkinterInterface
 
-class testTkinterInterface(unittest.TestCase):
+
+class TestTkinterInterface(unittest.TestCase):
     def setUp(self):
         self.tk = TkinterInterface.TkinterInterface()
 

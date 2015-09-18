@@ -2,6 +2,7 @@ import unittest
 from classes import Gui
 from mock import Mock, ReturnValues
 
+
 class TestGui(unittest.TestCase):
     def setUp(self):
         self.mockTk = Mock({'getRoot':[]})
