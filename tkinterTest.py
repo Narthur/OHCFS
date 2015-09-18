@@ -1,4 +1,10 @@
-import TkinterInterface as tk
+import Tkinter as tk
 root = tk.Tk()
 tk.Button(root, text="Hello World").grid()
+top = tk.Toplevel()
+tk.Button(top, text="Where will I be?").grid()
+root.mainloop()
+tk.Button(root, text="Let's do it again!").grid()
+root.quit()
+root.update()
 root.mainloop()

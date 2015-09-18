@@ -6,5 +6,5 @@ class TestTkinterInterface(unittest.TestCase):
     def setUp(self):
         self.tk = TkinterInterface.TkinterInterface()
 
-    def testHasGetRootMethod(self):
-        self.assertTrue(hasattr(self.tk, 'getRoot'))
+    def testHasAddTitleMethod(self):
+        self.assertTrue(hasattr(self.tk, 'addLabel'))
