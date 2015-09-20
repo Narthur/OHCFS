@@ -8,6 +8,6 @@ class TestFactory(unittest.TestCase):
     def testExists(self):
         self.assertIsInstance(self.factory, Factory.Factory)
 
-    def testMakeGui(self):
+    def PASStestMakeGui(self):
         gui = self.factory.makeGui()
         self.assertIsInstance(gui, Gui.Gui)

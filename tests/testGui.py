@@ -4,9 +4,9 @@ from mock import Mock, ReturnValues
 
 
 class TestGui(unittest.TestCase):
-    def setUp(self):
+    def PASSsetUp(self):
         self.mockTk = Mock()
         self.mockedGui = Gui.Gui(self.mockTk)
 
-    def testAddsTitle(self):
+    def PASStestAddsTitle(self):
         self.mockTk.mockCheckCall(0,'addLabel','OHCFS')
