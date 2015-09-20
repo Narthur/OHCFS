@@ -113,7 +113,8 @@ class Database:
 		CREATE TABLE student(
                 studentId INTEGER PRIMARY KEY,
                 firstName TEXT NOT NULL,
-                lastName TEXT
+                lastName TEXT,
+                isLeader INTEGER NOT NULL
 		)
 		''')
 
@@ -138,10 +139,11 @@ class Database:
                 creditCardTotal REAL,
                 cashTotal INTEGER,
                 coinsTotal REAL,
-                leader TEXT,
+                leaderId INTEGER NOT NULL,
                 location TEXT,
                 date INTEGER NOT NULL,
-                FOREIGN KEY(studentId) REFERENCES student(studentId)
+                FOREIGN KEY(studentId) REFERENCES student(studentId),
+                FOREIGN KEY(leaderId) REFERENCES student(studentId)
 		)
 		''')
 
