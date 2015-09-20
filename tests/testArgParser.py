@@ -17,3 +17,7 @@ class TestArgParser(unittest.TestCase):
     def testRecognizesCapitalizedCommand(self):
         command = self.mockedArgParser.getCommand(['Student'])
         self.assertEqual(command, 'student')
+
+    def testGetSubcommand(self):
+        subcommand = self.mockedArgParser.getSubcommand(['student','add'])
+        self.assertEqual(subcommand, 'add')
