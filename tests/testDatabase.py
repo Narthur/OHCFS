@@ -4,15 +4,12 @@ from classes import Database
 
 class TestDatabase(unittest.TestCase):
 	def setUp(self):
-		testDatabase = Database()
+		self.mockedDatabase = Database.Database()
+
+	def testHasGetAllStudentsMethod(self):
+		self.mockedDatabase.getAllStudents()
 
 # ToDo:
 #
-# test getStudent
-# test every table exists
-#
-# tableList = ['inventoryRecord', 'student', 'vehicle',
-#			 'mileageRecord', 'fuelRecord', 'expense',
-#			 'cashOnHandRecord', 'bankTransaction',
-#			 'advance', 'dailyStudentRecord', 'book',
-#			 'bookSaleRecord']
+# - move Sqlite commands into SqliteInterface
+# - finish testing getAllStudents method

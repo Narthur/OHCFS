@@ -207,3 +207,6 @@ class Database:
             return self.c.fetchone()
         elif studentId == 0 and firstName == '' and lastName == '':
             return None
+
+    def getAllStudents(self):
+        pass
