@@ -11,7 +11,14 @@ class ArgParser:
         return args[index].lower()
 
     def getFilters(self, args):
-        filterArgs = args[2:]
+        filterArgs = self._getFilterArgs(args)
         filterString = ' '.join(filterArgs)
         filters = filterString.split(', ')
         return filters
+
+    def _getFilterArgs(self, args):
+        filterArgs = args[2:]
+        preparedArgs = []
+        for arg in filterArgs:
+            preparedArgs.append(arg.capitalize())
+        return preparedArgs

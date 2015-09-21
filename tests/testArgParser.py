@@ -33,3 +33,7 @@ class TestArgParser(unittest.TestCase):
     def testGetTwoNames(self):
         filters = self.mockedArgParser.getFilters(['student','add','John,','Jo'])
         self.assertEqual(filters,['John','Jo'])
+
+    def testCapitalizesFirstLetter(self):
+        filters = self.mockedArgParser.getFilters(['student','add','john'])
+        self.assertEqual(filters,['John'])
