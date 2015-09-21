@@ -1,2 +1,7 @@
+import os.path
+
+
 class SqliteInterface:
-    pass
+    def _doesDatabaseExist(self):
+        PATH = './ohcfs.db'
+        return os.path.isfile(PATH)
