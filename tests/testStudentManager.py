@@ -3,5 +3,8 @@ from classes import StudentManager
 
 
 class TestStudentManager(unittest.TestCase):
-    def testExists(self):
-        StudentManager.StudentManager()
+    def setUp(self):
+        self.mockedStudentManager = StudentManager.StudentManager()
+
+    def testHasGetFilteredStudentsMethod(self):
+        self.mockedStudentManager.getFilteredStudents(['John Doe'])

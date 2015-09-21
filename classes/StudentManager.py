@@ -1,2 +1,3 @@
 class StudentManager:
-    pass
+    def getFilteredStudents(self, filters):
+        pass
