@@ -1,0 +1,2 @@
+class SqliteInterface:
+    pass
