@@ -15,3 +15,9 @@ class ArgParser:
 
     def _getPreparedArg(self, args, index):
         return args[index].lower()
+
+    def getFilters(self, args):
+        filterArgs = args[2:]
+        filterString = ' '.join(filterArgs)
+        filters = filterString.split(', ')
+        return filters
