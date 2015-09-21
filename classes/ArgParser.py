@@ -13,8 +13,7 @@ class ArgParser:
     def getFilters(self, args):
         filterArgs = self._getFilterArgs(args)
         filterString = ' '.join(filterArgs)
-        filters = filterString.split(', ')
-        return filters
+        return filterString.split(', ')
 
     def _getFilterArgs(self, args):
         filterArgs = args[2:]
