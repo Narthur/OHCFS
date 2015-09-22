@@ -32,5 +32,6 @@ class TestDatabase(unittest.TestCase):
             "INSERT INTO student (firstName, lastName, isLeader) VALUES ('John', 'Doe', 0)"
         )
 
-    def testHasConvertStudentToLeaderMethod(self):
+    def testConvertStudentToLeaderGetsAllStudents(self):
         self.mockedDatabase.convertStudentToLeader('John','Doe')
+        self.mockSqliteInterface.mockCheckCall(0,'executeQuery','SELECT * FROM student')

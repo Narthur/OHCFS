@@ -43,4 +43,4 @@ class Database:
         self.sqlite.executeQuery(query)
 
     def convertStudentToLeader(self, firstName, lastName):
-        pass
+        self.getAllStudents()
