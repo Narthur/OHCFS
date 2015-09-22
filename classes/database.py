@@ -1,4 +1,7 @@
 class Database:
+    def __init__(self, sqliteInterface):
+        self.sqlite = sqliteInterface
+
     def getStudent(self, studentId=0, firstName='', lastName=''):
         if studentId != 0 and firstName == '' and lastName == '':
             self.c.execute('SELECT * FROM student WHERE studentId=?', studentId)
@@ -30,4 +33,4 @@ class Database:
             return None
 
     def getAllStudents(self):
-        pass
+        return self.sqlite.executeQuery('SELECT * FROM student')
