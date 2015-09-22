@@ -14,6 +14,7 @@ class SqliteInterface:
         else:
             self.dbConnection = sqlite3.connect(PATH)
             self.c = self.dbConnection.cursor()
+        self.dbConnection.row_factory = sqlite3.Row
 
     def initializeDatabase(self):
         self.createVehicleTable()
