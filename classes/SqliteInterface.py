@@ -177,3 +177,6 @@ class SqliteInterface:
                 FOREIGN KEY(bookId) REFERENCES book(bookId)
 		)
 		''')
+
+    def executeQuery(self, query):
+        self.c.execute(query)
