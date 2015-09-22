@@ -21,9 +21,10 @@ class Factory:
         db = self.makeDatabase()
         args = sys.argv
         argParser = self.makeArgParser()
+        command = argParser.getCommand(args)
         subCommand = argParser.getSubcommand(args)
         filters = argParser.getFilters(args)
-        return StudentCli.StudentCli(db, subCommand, filters)
+        return StudentCli.StudentCli(db, command, subCommand, filters)
 
     def makeArgParser(self):
         return ArgParser.ArgParser()

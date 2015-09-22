@@ -1,5 +1,5 @@
 class StudentCli:
-    def __init__(self, db, subCommand, filters):
+    def __init__(self, db, command, subCommand, filters):
         self.db = db
         for filter in filters:
             names = filter.split(' ')
