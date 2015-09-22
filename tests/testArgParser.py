@@ -34,6 +34,6 @@ class TestArgParser(unittest.TestCase):
         filters = self.mockedArgParser.getFilters(['student','add','John,','Jo'])
         self.assertEqual(filters,['John','Jo'])
 
-    def testCapitalizesFirstLetter(self):
+    def testIgnoresCapitalization(self):
         filters = self.mockedArgParser.getFilters(['student','add','john'])
-        self.assertEqual(filters,['John'])
+        self.assertEqual(filters,['john'])

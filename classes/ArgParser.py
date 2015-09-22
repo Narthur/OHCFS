@@ -16,8 +16,4 @@ class ArgParser:
         return filterString.split(', ')
 
     def _getFilterArgs(self, args):
-        filterArgs = args[2:]
-        preparedArgs = []
-        for arg in filterArgs:
-            preparedArgs.append(arg.capitalize())
-        return preparedArgs
+        return args[2:]
