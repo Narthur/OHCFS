@@ -8,9 +8,6 @@ class TestDatabase(unittest.TestCase):
         self.mockSqliteInterface = Mock({'executeQuery':'result'})
         self.mockedDatabase = Database.Database(self.mockSqliteInterface)
 
-    def testHasGetAllStudentsMethod(self):
-        self.mockedDatabase.getAllStudents()
-
     def testGetAllStudentsGetsAllStudents(self):
         self.mockedDatabase.getAllStudents()
         self.mockSqliteInterface.mockCheckCall(0,'executeQuery','SELECT * FROM student')
