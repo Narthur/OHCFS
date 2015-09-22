@@ -32,6 +32,18 @@ class TestDatabase(unittest.TestCase):
             "INSERT INTO student (firstName, lastName, isLeader) VALUES ('John', 'Doe', 0)"
         )
 
-    def testConvertStudentToLeaderGetsAllStudents(self):
+    def testConvertStudentToLeaderConvertsStudent(self):
         self.mockedDatabase.convertStudentToLeader('John','Doe')
-        self.mockSqliteInterface.mockCheckCall(0,'executeQuery','SELECT * FROM student')
+        self.mockSqliteInterface.mockCheckCall(
+            0,
+            'executeQuery',
+            "UPDATE student SET isLeader=1 WHERE firstName='John', lastName='Doe'"
+        )
+
+    def testConvertStudentToLeaderCapitalizesNames(self):
+        self.mockedDatabase.convertStudentToLeader('john','doe')
+        self.mockSqliteInterface.mockCheckCall(
+            0,
+            'executeQuery',
+            "UPDATE student SET isLeader=1 WHERE firstName='John', lastName='Doe'"
+        )
