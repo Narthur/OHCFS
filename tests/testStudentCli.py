@@ -13,3 +13,7 @@ class TestStudentCli(unittest.TestCase):
     def testAddsStudent(self):
         self._initWithAddSubCommand()
         self.mockedDatabase.mockCheckCall(0,'addStudent','john','doe')
+
+    def testGetsAllStudentsWhenConverting(self):
+        self.studentCli = StudentCli.StudentCli(self.mockedDatabase,'leader','convert',['john doe'])
+        self.mockedDatabase.mockCheckCall(0,'getAllStudents')
