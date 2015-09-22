@@ -34,3 +34,10 @@ class Database:
 
     def getAllStudents(self):
         return self.sqlite.executeQuery('SELECT * FROM student')
+
+    def addStudent(self, firstName, lastName):
+        firstName = firstName.capitalize()
+        lastName = lastName.capitalize()
+        format = "INSERT INTO student (firstName, lastName, isLeader) VALUES ('{0}', '{1}', 0)"
+        query = format.format(firstName, lastName)
+        self.sqlite.executeQuery(query)

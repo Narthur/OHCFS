@@ -113,7 +113,7 @@ class SqliteInterface:
 		CREATE TABLE student(
                 studentId INTEGER PRIMARY KEY,
                 firstName TEXT NOT NULL,
-                lastName TEXT,
+                lastName TEXT NOT NULL,
                 isLeader INTEGER NOT NULL
 		)
 		''')

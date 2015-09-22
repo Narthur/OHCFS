@@ -15,3 +15,22 @@ class TestDatabase(unittest.TestCase):
     def testGetAllStudentsReturnsAllStudents(self):
         students = self.mockedDatabase.getAllStudents()
         self.assertEqual(students,'result')
+
+    def testHasAddStudentMethod(self):
+        self.mockedDatabase.addStudent('John','Doe')
+
+    def testAddsStudent(self):
+        self.mockedDatabase.addStudent('John','Doe')
+        self.mockSqliteInterface.mockCheckCall(
+            0,
+            'executeQuery',
+            "INSERT INTO student (firstName, lastName, isLeader) VALUES ('John', 'Doe', 0)"
+        )
+
+    def testCapitalizesNames(self):
+        self.mockedDatabase.addStudent('john','doe')
+        self.mockSqliteInterface.mockCheckCall(
+            0,
+            'executeQuery',
+            "INSERT INTO student (firstName, lastName, isLeader) VALUES ('John', 'Doe', 0)"
+        )
