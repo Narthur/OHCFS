@@ -16,9 +16,6 @@ class TestDatabase(unittest.TestCase):
         students = self.mockedDatabase.getAllStudents()
         self.assertEqual(students,'result')
 
-    def testHasAddStudentMethod(self):
-        self.mockedDatabase.addStudent('John','Doe')
-
     def testAddsStudent(self):
         self.mockedDatabase.addStudent('John','Doe')
         self.mockSqliteInterface.mockCheckCall(
