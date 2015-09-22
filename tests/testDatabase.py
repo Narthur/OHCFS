@@ -31,3 +31,6 @@ class TestDatabase(unittest.TestCase):
             'executeQuery',
             "INSERT INTO student (firstName, lastName, isLeader) VALUES ('John', 'Doe', 0)"
         )
+
+    def testHasConvertStudentToLeaderMethod(self):
+        self.mockedDatabase.convertStudentToLeader('John','Doe')

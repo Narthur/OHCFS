@@ -1,10 +1,10 @@
 class ArgParser:
     def getCommand(self, args):
-        firstArg = self._getPreparedArg(args,0)
+        firstArg = self._getPreparedArg(args,1)
         return firstArg if (firstArg == 'student') else None
 
     def getSubcommand(self, args):
-        secondArg = self._getPreparedArg(args,1)
+        secondArg = self._getPreparedArg(args,2)
         return secondArg if (secondArg == 'add') else None
 
     def _getPreparedArg(self, args, index):
@@ -16,4 +16,4 @@ class ArgParser:
         return filterString.split(', ')
 
     def _getFilterArgs(self, args):
-        return args[2:]
+        return args[3:]

@@ -41,3 +41,6 @@ class Database:
         format = "INSERT INTO student (firstName, lastName, isLeader) VALUES ('{0}', '{1}', 0)"
         query = format.format(firstName, lastName)
         self.sqlite.executeQuery(query)
+
+    def convertStudentToLeader(self, firstName, lastName):
+        pass

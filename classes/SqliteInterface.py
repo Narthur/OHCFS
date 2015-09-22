@@ -180,3 +180,4 @@ class SqliteInterface:
 
     def executeQuery(self, query):
         self.c.execute(query)
+        self.dbConnection.commit()

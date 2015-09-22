@@ -1,6 +1,7 @@
 import unittest, sys
 from classes import Factory, Gui, StudentCli
 
+
 class TestFactory(unittest.TestCase):
     def setUp(self):
         self.factory = Factory.Factory()
@@ -13,6 +14,6 @@ class TestFactory(unittest.TestCase):
         self.assertIsInstance(gui, Gui.Gui)
 
     def testMakeArgParserMakesStudentCli(self):
-        sys.argv = ['student']
+        sys.argv = ['ohcfs','student','add','john','doe']
         argHandler = self.factory.makeArgHandler()
         self.assertIsInstance(argHandler, StudentCli.StudentCli)

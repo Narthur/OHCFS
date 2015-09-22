@@ -7,33 +7,33 @@ class TestArgParser(unittest.TestCase):
         self.mockedArgParser = ArgParser.ArgParser()
 
     def testGetCommand(self):
-        command = self.mockedArgParser.getCommand(['student'])
+        command = self.mockedArgParser.getCommand(['ohcfs','student'])
         self.assertEqual(command, 'student')
 
     def testDoesntReturnInvalidCommand(self):
-        command = self.mockedArgParser.getCommand(['BAD_COMMAND'])
+        command = self.mockedArgParser.getCommand(['ohcfs','BAD_COMMAND'])
         self.assertEqual(command, None)
 
     def testRecognizesCapitalizedCommand(self):
-        command = self.mockedArgParser.getCommand(['Student'])
+        command = self.mockedArgParser.getCommand(['ohcfs','Student'])
         self.assertEqual(command, 'student')
 
     def testGetSubcommand(self):
-        subcommand = self.mockedArgParser.getSubcommand(['student','add'])
+        subcommand = self.mockedArgParser.getSubcommand(['ohcfs','student','add'])
         self.assertEqual(subcommand, 'add')
 
     def testGetSimpleFilter(self):
-        filters = self.mockedArgParser.getFilters(['student','add','John'])
+        filters = self.mockedArgParser.getFilters(['ohcfs','student','add','John'])
         self.assertEqual(filters,['John'])
 
     def testGetFullNameFilter(self):
-        filters = self.mockedArgParser.getFilters(['student','add','John','Doe'])
+        filters = self.mockedArgParser.getFilters(['ohcfs','student','add','John','Doe'])
         self.assertEqual(filters,['John Doe'])
 
     def testGetTwoNames(self):
-        filters = self.mockedArgParser.getFilters(['student','add','John,','Jo'])
+        filters = self.mockedArgParser.getFilters(['ohcfs','student','add','John,','Jo'])
         self.assertEqual(filters,['John','Jo'])
 
     def testIgnoresCapitalization(self):
-        filters = self.mockedArgParser.getFilters(['student','add','john'])
+        filters = self.mockedArgParser.getFilters(['ohcfs','student','add','john'])
         self.assertEqual(filters,['john'])

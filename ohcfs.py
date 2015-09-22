@@ -17,4 +17,4 @@
 from classes import Factory
 
 factory = Factory.Factory()
-gui = factory.makeGui()
+argHandler = factory.makeArgHandler()
