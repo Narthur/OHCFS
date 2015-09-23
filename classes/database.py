@@ -33,7 +33,9 @@ class Database:
             return None
 
     def getAllStudents(self):
-        return self.sqlite.executeQuery('SELECT * FROM student')
+        result = self.sqlite.executeQuery('SELECT * FROM student')
+        print result
+        return result
 
     def addStudent(self, firstName, lastName):
         firstName = firstName.capitalize()
