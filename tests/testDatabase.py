@@ -53,3 +53,13 @@ class TestDatabase(unittest.TestCase):
         filters = ['John Doe']
         students = self.mockedDatabase.getStudentsFromFilters(filters)
         self.assertEqual(students,[[0,'John','Doe',0]])
+
+    def testGetFilteredStudentsWithOnlyFirstName(self):
+        filters = ['John']
+        students = self.mockedDatabase.getStudentsFromFilters(filters)
+        self.assertEqual(students, [[0,'John','Doe',0]])
+
+    def testGetFilteredStudentsWithPartialName(self):
+        filters = ['Joh']
+        students = self.mockedDatabase.getStudentsFromFilters(filters)
+        self.assertEqual(students, [[0,'John','Doe',0]])

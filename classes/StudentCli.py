@@ -7,11 +7,7 @@ class StudentCli:
         if command == 'student':
             self.processStudentCommands(filters)
         else:
-            students = self.db.getAllStudents()
-            matches = []
-            for filter in filters:
-                firstName = filter[0]
-                lastName = filter[1]
+            students = self.db.getStudentsFromFilters(filters)
 
 
     def processStudentCommands(self, filters):
