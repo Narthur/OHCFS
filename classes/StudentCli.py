@@ -23,7 +23,8 @@ class StudentCli:
 
     def _confirmSelection(self, students):
         self.terminal.output('Selection:')
-        self.tabulate.tabulate(students)
+        table = self.tabulate.tabulate(students)
+        self.terminal.output(table)
         response = self.terminal.requestResponse('Confirm? Y/N ')
         return 'yes'.count(response.lower()) > 0
 

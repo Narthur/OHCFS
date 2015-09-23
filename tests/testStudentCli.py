@@ -8,7 +8,7 @@ class TestStudentCli(unittest.TestCase):
         self.studentRows = [[0, 'John', 'Doe', 0], [1, 'Joe', 'Doe', 0]]
         self.mockDatabase = Mock({'getStudentsFromFilters': self.studentRows})
         self.mockTerminalInterface = Mock({'requestResponse':'Y'})
-        self.mockTabulateInterface = Mock()
+        self.mockTabulateInterface = Mock({'tabulate':'table'})
 
     def _initWithAddSubCommand(self):
         self.studentCli = StudentCli.StudentCli(
@@ -52,4 +52,8 @@ class TestStudentCli(unittest.TestCase):
 
     def testConfirmsSelection(self):
         self._initWithConvertSubCommand()
-        self.mockTerminalInterface.mockCheckCall(1,'requestResponse','Confirm? Y/N ')
+        self.mockTerminalInterface.mockCheckCall(2,'requestResponse','Confirm? Y/N ')
+
+    def testOutputsTable(self):
+        self._initWithConvertSubCommand()
+        self.mockTerminalInterface.mockCheckCall(1,'output','table')

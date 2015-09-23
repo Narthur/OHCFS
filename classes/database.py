@@ -34,7 +34,6 @@ class Database:
 
     def getAllStudents(self):
         result = self.sqlite.executeQuery('SELECT * FROM student')
-        print result
         return result
 
     def addStudent(self, firstName, lastName):
