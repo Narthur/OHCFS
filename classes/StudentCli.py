@@ -8,6 +8,8 @@ class StudentCli:
             self.processStudentCommands(filters)
         else:
             students = self.db.getStudentsFromFilters(filters)
+            for student in students:
+                self.db.convertStudentToLeader(student[1],student[2])
 
 
     def processStudentCommands(self, filters):
