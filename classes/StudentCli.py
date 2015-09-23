@@ -16,11 +16,16 @@ class StudentCli:
 
     def convertStudentsToLeaders(self, filters):
         students = self.db.getStudentsFromFilters(filters)
+        confirmed = self._confirmSelection(students)
+        if confirmed:
+            for student in students:
+                self.db.convertStudentToLeader(student[1], student[2])
+
+    def _confirmSelection(self, students):
         self.terminal.output('Selection:')
         self.tabulate.tabulate(students)
-        self.terminal.requestResponse('Confirm? Y/N ')
-        for student in students:
-            self.db.convertStudentToLeader(student[1], student[2])
+        response = self.terminal.requestResponse('Confirm? Y/N ')
+        return 'yes'.count(response.lower()) > 0
 
     def processStudentCommands(self, filters):
         self.addStudents(filters)

@@ -7,7 +7,7 @@ class TestStudentCli(unittest.TestCase):
     def setUp(self):
         self.studentRows = [[0, 'John', 'Doe', 0], [1, 'Joe', 'Doe', 0]]
         self.mockDatabase = Mock({'getStudentsFromFilters': self.studentRows})
-        self.mockTerminalInterface = Mock()
+        self.mockTerminalInterface = Mock({'requestResponse':'Y'})
         self.mockTabulateInterface = Mock()
 
     def _initWithAddSubCommand(self):
