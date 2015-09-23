@@ -48,3 +48,30 @@ class Database:
         format = "UPDATE student SET isLeader=1 WHERE firstName='{0}', lastName='{1}'"
         query = format.format(firstName,lastName)
         self.sqlite.executeQuery(query)
+
+    def getStudentsFromFilters(self, filters):
+        matches = []
+        for filter in filters:
+            filterMatches = self._getStudentsFromFilter(filter)
+            matches += filterMatches
+        return matches
+
+    def _getStudentsFromFilter(self, filter):
+        firstName = self._getFilterFirstName(filter)
+        lastName = self._getFilterLastName(filter)
+        students = self.getAllStudents()
+        matches = []
+        for student in students:
+            if student[1] == firstName and student[2] == lastName:
+                matches.append(student)
+        return matches
+
+    def _getFilterLastName(self, filter):
+        names = filter.split(' ')
+        lastName = names[1]
+        return lastName
+
+    def _getFilterFirstName(self, filter):
+        names = filter.split(' ')
+        firstName = names[0]
+        return firstName

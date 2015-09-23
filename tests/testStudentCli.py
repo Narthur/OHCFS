@@ -9,8 +9,8 @@ class TestStudentCli(unittest.TestCase):
         self.studentCli = StudentCli.StudentCli(self.mockedDatabase,'student','add',['john doe'])
 
     def _initWithConvertSubCommand(self):
-        self.mockedDatabase = Mock()
-        self.studentCli = StudentCli.StudentCli(self.mockedDatabase, 'leader', 'convert', ['john doe'])
+        self.mockedDatabase = Mock({'getAllStudents':[[0,'John','Doe',0],[1,'Jo','Doe',0]]})
+        self.studentCli = StudentCli.StudentCli(self.mockedDatabase, 'leader', 'convert', ['joh doe'])
 
     def testAddsStudent(self):
         self._initWithAddSubCommand()
@@ -19,3 +19,7 @@ class TestStudentCli(unittest.TestCase):
     def testGetsAllStudentsWhenConverting(self):
         self._initWithConvertSubCommand()
         self.mockedDatabase.mockCheckCall(0,'getAllStudents')
+
+    def PASStestConvertsStudent(self):
+        self._initWithConvertSubCommand()
+        self.mockedDatabase.mockCheckCall(1,'convertStudentToLeader','John','Doe')
