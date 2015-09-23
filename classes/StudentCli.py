@@ -3,18 +3,18 @@ class StudentCli:
         self.db = db
         self.terminal = terminal
         self.tabulate = tabulate
-        self.processCommands(command, filters)
+        self._processCommands(command, filters)
 
-    def processCommands(self, command, filters):
+    def _processCommands(self, command, filters):
         if command == 'student':
-            self.processStudentCommands(filters)
+            self._processStudentCommands(filters)
         else:
-            self.processLeaderCommands(filters)
+            self._processLeaderCommands(filters)
 
-    def processLeaderCommands(self, filters):
-        self.convertStudentsToLeaders(filters)
+    def _processLeaderCommands(self, filters):
+        self._convertStudentsToLeaders(filters)
 
-    def convertStudentsToLeaders(self, filters):
+    def _convertStudentsToLeaders(self, filters):
         students = self.db.getStudentsFromFilters(filters)
         confirmed = self._confirmSelection(students)
         if confirmed:
@@ -28,10 +28,10 @@ class StudentCli:
         response = self.terminal.requestResponse('Confirm? Y/N ')
         return 'yes'.count(response.lower()) > 0
 
-    def processStudentCommands(self, filters):
-        self.addStudents(filters)
+    def _processStudentCommands(self, filters):
+        self._addStudents(filters)
 
-    def addStudents(self, filters):
+    def _addStudents(self, filters):
         for filter in filters:
             names = filter.split(' ')
             self.db.addStudent(names[0], names[1])
