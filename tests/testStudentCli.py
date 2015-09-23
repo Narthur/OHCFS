@@ -4,9 +4,11 @@ from mock import Mock, ReturnValues
 
 
 class TestStudentCli(unittest.TestCase):
-    def _initWithAddSubCommand(self):
-        self.mockDatabase = Mock()
+    def setUp(self):
+        self.mockDatabase = Mock({'getStudentsFromFilters':[[0,'John','Doe',0],[1,'Joe','Doe',0]]})
         self.mockTerminalInterface = Mock()
+
+    def _initWithAddSubCommand(self):
         self.studentCli = StudentCli.StudentCli(
             self.mockDatabase,
             self.mockTerminalInterface,
@@ -16,8 +18,6 @@ class TestStudentCli(unittest.TestCase):
         )
 
     def _initWithConvertSubCommand(self):
-        self.mockDatabase = Mock({'getStudentsFromFilters':[[0,'John','Doe',0],[1,'Joe','Doe',0]]})
-        self.mockTerminalInterface = Mock()
         self.studentCli = StudentCli.StudentCli(
             self.mockDatabase,
             self.mockTerminalInterface,
