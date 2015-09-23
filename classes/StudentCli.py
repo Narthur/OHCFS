@@ -1,7 +1,8 @@
 class StudentCli:
-    def __init__(self, db, terminal, command, subCommand, filters):
+    def __init__(self, db, terminal, tabulate, command, subCommand, filters):
         self.db = db
         self.terminal = terminal
+        self.tabulate = tabulate
         self.processCommands(command, filters)
 
     def processCommands(self, command, filters):
@@ -16,6 +17,8 @@ class StudentCli:
     def convertStudentsToLeaders(self, filters):
         students = self.db.getStudentsFromFilters(filters)
         self.terminal.output('Selection:')
+        self.tabulate.tabulate(students)
+        self.terminal.requestResponse('Confirm? Y/N ')
         for student in students:
             self.db.convertStudentToLeader(student[1], student[2])
 

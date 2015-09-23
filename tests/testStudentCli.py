@@ -5,13 +5,16 @@ from mock import Mock, ReturnValues
 
 class TestStudentCli(unittest.TestCase):
     def setUp(self):
-        self.mockDatabase = Mock({'getStudentsFromFilters':[[0,'John','Doe',0],[1,'Joe','Doe',0]]})
+        self.studentRows = [[0, 'John', 'Doe', 0], [1, 'Joe', 'Doe', 0]]
+        self.mockDatabase = Mock({'getStudentsFromFilters': self.studentRows})
         self.mockTerminalInterface = Mock()
+        self.mockTabulateInterface = Mock()
 
     def _initWithAddSubCommand(self):
         self.studentCli = StudentCli.StudentCli(
             self.mockDatabase,
             self.mockTerminalInterface,
+            self.mockTabulateInterface,
             'student',
             'add',
             ['john doe']
@@ -21,6 +24,7 @@ class TestStudentCli(unittest.TestCase):
         self.studentCli = StudentCli.StudentCli(
             self.mockDatabase,
             self.mockTerminalInterface,
+            self.mockTabulateInterface,
             'leader',
             'convert',
             ['joh doe']
@@ -38,6 +42,14 @@ class TestStudentCli(unittest.TestCase):
         self._initWithConvertSubCommand()
         self.mockDatabase.mockCheckCall(1,'convertStudentToLeader','John','Doe')
 
-    def testConfirmsSelection(self):
+    def testOutputsSelectionHead(self):
         self._initWithConvertSubCommand()
         self.mockTerminalInterface.mockCheckCall(0,'output','Selection:')
+
+    def testTabulatesSelection(self):
+        self._initWithConvertSubCommand()
+        self.mockTabulateInterface.mockCheckCall(0,'tabulate',self.studentRows)
+
+    def testConfirmsSelection(self):
+        self._initWithConvertSubCommand()
+        self.mockTerminalInterface.mockCheckCall(1,'requestResponse','Confirm? Y/N ')
