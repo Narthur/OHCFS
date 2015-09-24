@@ -3,20 +3,22 @@ class StudentCli:
         self.studentManager = studentManager
         self.terminal = terminal
         self.tabulate = tabulate
+        self.command = command
         self.subCommand = subCommand
-        self._processCommands(command, filters)
+        self.filters = filters
+        self._processCommands()
 
-    def _processCommands(self, command, filters):
-        if command == 'student':
-            self._processStudentCommands(filters)
-        else:
-            self._processLeaderCommands(filters)
+    def _processCommands(self):
+        if self.command == 'student':
+            self._processStudentCommands()
+        if self.command == 'leader':
+            self._processLeaderCommands()
 
-    def _processLeaderCommands(self, filters):
-        self._convertStudentsToLeaders(filters)
+    def _processLeaderCommands(self):
+        self._convertStudentsToLeaders()
 
-    def _convertStudentsToLeaders(self, filters):
-        students = self.studentManager.getStudentsFromFilters(filters)
+    def _convertStudentsToLeaders(self):
+        students = self.studentManager.getStudentsFromFilters(self.filters)
         confirmed = self._confirmSelection(students)
         if confirmed:
             for student in students:
@@ -29,13 +31,14 @@ class StudentCli:
         response = self.terminal.requestResponse('Confirm? Y/N ')
         return 'yes'.count(response.lower()) > 0
 
-    def _processStudentCommands(self, filters):
-        if self.subCommand == 'add':
-            self._addStudents(filters)
-        if self.subCommand == 'list':
-            self.studentManager.getStudentsFromFilters(filters)
+    def _processStudentCommands(self):
 
-    def _addStudents(self, filters):
-        for filter in filters:
+        if self.subCommand == 'add':
+            self._addStudents()
+        if self.subCommand == 'list':
+            self.studentManager.getStudentsFromFilters(self.filters)
+
+    def _addStudents(self):
+        for filter in self.filters:
             names = filter.split(' ')
             self.studentManager.addStudent(names[0], names[1])
