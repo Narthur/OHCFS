@@ -48,18 +48,3 @@ class TestDatabase(unittest.TestCase):
             'executeQuery',
             "UPDATE student SET isLeader=1 WHERE firstName='John', lastName='Doe'"
         )
-
-    def testGetFilteredStudents(self):
-        filters = ['John Doe']
-        students = self.mockedDatabase.getStudentsFromFilters(filters)
-        self.assertEqual(students,[[0,'John','Doe',0]])
-
-    def testGetFilteredStudentsWithOnlyFirstName(self):
-        filters = ['John']
-        students = self.mockedDatabase.getStudentsFromFilters(filters)
-        self.assertEqual(students, [[0,'John','Doe',0]])
-
-    def testGetFilteredStudentsWithPartialName(self):
-        filters = ['Joh']
-        students = self.mockedDatabase.getStudentsFromFilters(filters)
-        self.assertEqual(students, [[0,'John','Doe',0]])

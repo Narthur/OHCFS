@@ -6,13 +6,13 @@ from mock import Mock, ReturnValues
 class TestStudentCli(unittest.TestCase):
     def setUp(self):
         self.studentRows = [[0, 'John', 'Doe', 0], [1, 'Joe', 'Doe', 0]]
-        self.mockDatabase = Mock({'getStudentsFromFilters': self.studentRows})
+        self.mockStudentManager = Mock({'getStudentsFromFilters': self.studentRows})
         self.mockTerminalInterface = Mock({'requestResponse':'Y'})
         self.mockTabulateInterface = Mock({'tabulate':'table'})
 
     def _initWithAddSubCommand(self):
         self.studentCli = StudentCli.StudentCli(
-            self.mockDatabase,
+            self.mockStudentManager,
             self.mockTerminalInterface,
             self.mockTabulateInterface,
             'student',
@@ -22,7 +22,7 @@ class TestStudentCli(unittest.TestCase):
 
     def _initWithConvertSubCommand(self):
         self.studentCli = StudentCli.StudentCli(
-            self.mockDatabase,
+            self.mockStudentManager,
             self.mockTerminalInterface,
             self.mockTabulateInterface,
             'leader',
@@ -32,15 +32,15 @@ class TestStudentCli(unittest.TestCase):
 
     def testAddsStudent(self):
         self._initWithAddSubCommand()
-        self.mockDatabase.mockCheckCall(0,'addStudent','john','doe')
+        self.mockStudentManager.mockCheckCall(0,'addStudent','john','doe')
 
     def testGetsAllStudentsWhenConverting(self):
         self._initWithConvertSubCommand()
-        self.mockDatabase.mockCheckCall(0,'getStudentsFromFilters',['joh doe'])
+        self.mockStudentManager.mockCheckCall(0,'getStudentsFromFilters',['joh doe'])
 
     def testConvertsStudent(self):
         self._initWithConvertSubCommand()
-        self.mockDatabase.mockCheckCall(1,'convertStudentToLeader','John','Doe')
+        self.mockStudentManager.mockCheckCall(1,'convertStudentToLeader','John','Doe')
 
     def testOutputsSelectionHead(self):
         self._initWithConvertSubCommand()

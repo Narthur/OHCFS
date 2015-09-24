@@ -1,6 +1,6 @@
 class StudentCli:
-    def __init__(self, db, terminal, tabulate, command, subCommand, filters):
-        self.db = db
+    def __init__(self, studentManager, terminal, tabulate, command, subCommand, filters):
+        self.studentManager = studentManager
         self.terminal = terminal
         self.tabulate = tabulate
         self._processCommands(command, filters)
@@ -15,11 +15,11 @@ class StudentCli:
         self._convertStudentsToLeaders(filters)
 
     def _convertStudentsToLeaders(self, filters):
-        students = self.db.getStudentsFromFilters(filters)
+        students = self.studentManager.getStudentsFromFilters(filters)
         confirmed = self._confirmSelection(students)
         if confirmed:
             for student in students:
-                self.db.convertStudentToLeader(student[1], student[2])
+                self.studentManager.convertStudentToLeader(student[1], student[2])
 
     def _confirmSelection(self, students):
         self.terminal.output('Selection:')
@@ -34,4 +34,4 @@ class StudentCli:
     def _addStudents(self, filters):
         for filter in filters:
             names = filter.split(' ')
-            self.db.addStudent(names[0], names[1])
+            self.studentManager.addStudent(names[0], names[1])
