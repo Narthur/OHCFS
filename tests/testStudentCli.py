@@ -71,3 +71,7 @@ class TestStudentCli(unittest.TestCase):
     def testListArgGetsStudentsFromFilters(self):
         self._initWithListSubCommand()
         self.mockStudentManager.mockCheckCall(0,'getStudentsFromFilters',['john doe'])
+
+    def testListArgTabulatesStudents(self):
+        self._initWithListSubCommand()
+        self.mockTabulateInterface.mockCheckCall(0,'tabulate',self.studentRows)

@@ -25,18 +25,21 @@ class StudentCli:
                 self.studentManager.convertStudentToLeader(student[1], student[2])
 
     def _confirmSelection(self, students):
-        self.terminal.output('Selection:')
-        table = self.tabulate.tabulate(students)
-        self.terminal.output(table)
+        self._displaySelection(students)
         response = self.terminal.requestResponse('Confirm? Y/N ')
         return 'yes'.count(response.lower()) > 0
 
-    def _processStudentCommands(self):
+    def _displaySelection(self, students):
+        self.terminal.output('Selection:')
+        table = self.tabulate.tabulate(students)
+        self.terminal.output(table)
 
+    def _processStudentCommands(self):
         if self.subCommand == 'add':
             self._addStudents()
         if self.subCommand == 'list':
-            self.studentManager.getStudentsFromFilters(self.filters)
+            students = self.studentManager.getStudentsFromFilters(self.filters)
+            self._displaySelection(students)
 
     def _addStudents(self):
         for filter in self.filters:

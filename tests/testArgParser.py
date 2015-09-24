@@ -41,3 +41,7 @@ class TestArgParser(unittest.TestCase):
     def testGetFiltersReturnsEmptyListWhenNoneProvided(self):
         filters = self.mockedArgParser.getFilters(['ohcfs','student','list'])
         self.assertEqual(filters,[])
+
+    def testGetListSubcommand(self):
+        subcommand = self.mockedArgParser.getSubcommand(['ohcfs','student','list'])
+        self.assertEqual(subcommand, 'list')

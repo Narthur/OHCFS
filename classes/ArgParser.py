@@ -4,8 +4,9 @@ class ArgParser:
         return firstArg if (firstArg == 'student') else None
 
     def getSubcommand(self, args):
+        subCommands = ['add','list']
         secondArg = self._getPreparedArg(args,2)
-        return secondArg if (secondArg == 'add') else None
+        return secondArg if (secondArg in subCommands) else None
 
     def _getPreparedArg(self, args, index):
         return args[index].lower()
