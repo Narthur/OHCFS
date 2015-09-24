@@ -37,3 +37,7 @@ class TestArgParser(unittest.TestCase):
     def testIgnoresCapitalization(self):
         filters = self.mockedArgParser.getFilters(['ohcfs','student','add','john'])
         self.assertEqual(filters,['john'])
+
+    def testGetFiltersReturnsEmptyListWhenNoneProvided(self):
+        filters = self.mockedArgParser.getFilters(['ohcfs','student','list'])
+        self.assertEqual(filters,[])

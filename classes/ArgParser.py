@@ -13,7 +13,9 @@ class ArgParser:
     def getFilters(self, args):
         filterArgs = self._getFilterArgs(args)
         filterString = ' '.join(filterArgs)
-        return filterString.split(', ')
+        filters = filterString.split(', ')
+        isPracticallyEmptyList = len(filters) == 1 and filters[0] == ''
+        return [] if isPracticallyEmptyList else filters
 
     def _getFilterArgs(self, args):
         return args[3:]
