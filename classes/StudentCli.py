@@ -3,6 +3,7 @@ class StudentCli:
         self.studentManager = studentManager
         self.terminal = terminal
         self.tabulate = tabulate
+        self.subCommand = subCommand
         self._processCommands(command, filters)
 
     def _processCommands(self, command, filters):
@@ -29,7 +30,10 @@ class StudentCli:
         return 'yes'.count(response.lower()) > 0
 
     def _processStudentCommands(self, filters):
-        self._addStudents(filters)
+        if self.subCommand == 'add':
+            self._addStudents(filters)
+        if self.subCommand == 'list':
+            self.studentManager.getStudentsFromFilters(filters)
 
     def _addStudents(self, filters):
         for filter in filters:

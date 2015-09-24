@@ -30,6 +30,16 @@ class TestStudentCli(unittest.TestCase):
             ['joh doe']
         )
 
+    def _initWithListSubCommand(self):
+        self.studentCli = StudentCli.StudentCli(
+            self.mockStudentManager,
+            self.mockTerminalInterface,
+            self.mockTabulateInterface,
+            'student',
+            'list',
+            ['john doe']
+        )
+
     def testAddsStudent(self):
         self._initWithAddSubCommand()
         self.mockStudentManager.mockCheckCall(0,'addStudent','john','doe')
@@ -57,3 +67,7 @@ class TestStudentCli(unittest.TestCase):
     def testOutputsTable(self):
         self._initWithConvertSubCommand()
         self.mockTerminalInterface.mockCheckCall(1,'output','table')
+
+    def testListArgGetsStudentsFromFilters(self):
+        self._initWithListSubCommand()
+        self.mockStudentManager.mockCheckCall(0,'getStudentsFromFilters',['john doe'])
