@@ -46,7 +46,7 @@ class Database:
     def convertStudentToLeader(self, firstName, lastName):
         firstName = firstName.capitalize()
         lastName = lastName.capitalize()
-        format = "UPDATE student SET isLeader=1 WHERE firstName='{0}', lastName='{1}'"
+        format = "UPDATE student SET isLeader=1 WHERE firstName='{0}' AND lastName='{1}'"
         query = format.format(firstName,lastName)
         print query
         self.sqlite.executeQuery(query)

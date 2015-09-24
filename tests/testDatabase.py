@@ -38,7 +38,7 @@ class TestDatabase(unittest.TestCase):
         self.mockSqliteInterface.mockCheckCall(
             0,
             'executeQuery',
-            "UPDATE student SET isLeader=1 WHERE firstName='John', lastName='Doe'"
+            "UPDATE student SET isLeader=1 WHERE firstName='John' AND lastName='Doe'"
         )
 
     def testConvertStudentToLeaderCapitalizesNames(self):
@@ -46,5 +46,5 @@ class TestDatabase(unittest.TestCase):
         self.mockSqliteInterface.mockCheckCall(
             0,
             'executeQuery',
-            "UPDATE student SET isLeader=1 WHERE firstName='John', lastName='Doe'"
+            "UPDATE student SET isLeader=1 WHERE firstName='John' AND lastName='Doe'"
         )
