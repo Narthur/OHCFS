@@ -6,7 +6,7 @@ from mock import Mock, ReturnValues
 class TestStudentCli(unittest.TestCase):
     def setUp(self):
         self.studentRows = [[0, 'John', 'Doe', 0], [1, 'Joe', 'Doe', 0]]
-        self.mockStudentManager = Mock({'getStudentsFromFilters': self.studentRows})
+        self.mockStudentManager = Mock({'getEveryoneFromFilters': self.studentRows})
         self.mockTerminalInterface = Mock({'requestResponse':'Y'})
         self.mockTabulateInterface = Mock({'tabulate':'table'})
 
@@ -46,7 +46,7 @@ class TestStudentCli(unittest.TestCase):
 
     def testGetsAllStudentsWhenConverting(self):
         self._initWithConvertSubCommand()
-        self.mockStudentManager.mockCheckCall(0,'getStudentsFromFilters',['joh doe'])
+        self.mockStudentManager.mockCheckCall(0,'getEveryoneFromFilters',['joh doe'])
 
     def testConvertsStudent(self):
         self._initWithConvertSubCommand()
@@ -70,7 +70,7 @@ class TestStudentCli(unittest.TestCase):
 
     def testListArgGetsStudentsFromFilters(self):
         self._initWithListSubCommand()
-        self.mockStudentManager.mockCheckCall(0,'getStudentsFromFilters',['john doe'])
+        self.mockStudentManager.mockCheckCall(0,'getEveryoneFromFilters',['john doe'])
 
     def testListArgTabulatesStudents(self):
         self._initWithListSubCommand()

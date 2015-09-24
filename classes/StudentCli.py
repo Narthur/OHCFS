@@ -18,7 +18,7 @@ class StudentCli:
         self._convertStudentsToLeaders()
 
     def _convertStudentsToLeaders(self):
-        students = self.studentManager.getStudentsFromFilters(self.filters)
+        students = self.studentManager.getEveryoneFromFilters(self.filters)
         confirmed = self._confirmSelection(students)
         if confirmed:
             for student in students:
@@ -38,7 +38,7 @@ class StudentCli:
         if self.subCommand == 'add':
             self._addStudents()
         if self.subCommand == 'list':
-            students = self.studentManager.getStudentsFromFilters(self.filters)
+            students = self.studentManager.getEveryoneFromFilters(self.filters)
             self._displaySelection(students)
 
     def _addStudents(self):

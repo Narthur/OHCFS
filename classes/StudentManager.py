@@ -2,27 +2,27 @@ class StudentManager:
     def __init__(self, db):
         self.db = db
 
-    def getStudentsFromFilters(self, filters):
-        return self.db.getAllStudents() if filters == [] else self._matchingStudents(filters)
+    def getEveryoneFromFilters(self, filters):
+        return self.db.getAllStudents() if filters == [] else self._matchingPeople(filters)
 
-    def _matchingStudents(self, filters):
+    def _matchingPeople(self, filters):
         matches = []
         for filter in filters:
-            filterMatches = self._getStudentsFromFilter(filter)
+            filterMatches = self._getEveryoneFromFilter(filter)
             matches += filterMatches
         return matches
 
-    def _getStudentsFromFilter(self, filter):
+    def _getEveryoneFromFilter(self, filter):
         students = self.db.getAllStudents()
         matches = []
         names = filter.split(' ')
         if len(names) == 1:
-            matches += self._findStudentsMatchingSingleName(names, students)
+            matches += self._findPeopleMatchingSingleName(names, students)
         else:
-            matches += self._findStudentsMatchingTwoNames(names, students)
+            matches += self._findPeopleMatchingTwoNames(names, students)
         return matches
 
-    def _findStudentsMatchingTwoNames(self, names, students):
+    def _findPeopleMatchingTwoNames(self, names, students):
         matches = []
         firstName = names[0].lower()
         lastName = names[1].lower()
@@ -33,7 +33,7 @@ class StudentManager:
                 matches.append(student)
         return matches
 
-    def _findStudentsMatchingSingleName(self, names, students):
+    def _findPeopleMatchingSingleName(self, names, students):
         matches = []
         singleName = names[0].lower()
         for student in students:
