@@ -38,3 +38,8 @@ class TestStudentManager(unittest.TestCase):
     def testGetFilteredStudentsWithEmptyFiltersListReturnsAllStudents(self):
         students = self.mockedStudentManager.getStudentsFromFilters([])
         self.assertEqual(students,self.mockStudents)
+
+    def testGetFilteredStudentsWithoutCaps(self):
+        filters = ['john']
+        students = self.mockedStudentManager.getStudentsFromFilters(filters)
+        self.assertEqual(students, [[0,'John','Doe',0]])

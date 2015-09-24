@@ -24,18 +24,22 @@ class StudentManager:
 
     def _findStudentsMatchingTwoNames(self, names, students):
         matches = []
-        firstName = names[0]
-        lastName = names[1]
+        firstName = names[0].lower()
+        lastName = names[1].lower()
         for student in students:
-            if student[1].count(firstName) > 0 and student[2].count(lastName) > 0:
+            matchesFirstName = student[1].lower().count(firstName) > 0
+            matchesLastName = student[2].lower().count(lastName) > 0
+            if matchesFirstName and matchesLastName:
                 matches.append(student)
         return matches
 
     def _findStudentsMatchingSingleName(self, names, students):
         matches = []
-        singleName = names[0]
+        singleName = names[0].lower()
         for student in students:
-            if student[1].count(singleName) > 0 or student[2].count(singleName) > 0:
+            matchesFirstName = student[1].lower().count(singleName) > 0
+            matchesLastName = student[2].lower().count(singleName) > 0
+            if matchesFirstName or matchesLastName:
                 matches.append(student)
         return matches
 
