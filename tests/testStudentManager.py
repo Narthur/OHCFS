@@ -34,3 +34,7 @@ class TestStudentManager(unittest.TestCase):
     def testAddStudentAddsStudent(self):
         self.mockedStudentManager.addStudent('John','Doe')
         self.mockDb.mockCheckCall(0,'addStudent','John','Doe')
+
+    def testGetFilteredStudentsWithEmptyFiltersListReturnsAllStudents(self):
+        students = self.mockedStudentManager.getStudentsFromFilters([])
+        self.assertEqual(students,self.mockStudents)

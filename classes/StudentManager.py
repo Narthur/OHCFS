@@ -3,6 +3,9 @@ class StudentManager:
         self.db = db
 
     def getStudentsFromFilters(self, filters):
+        return self.db.getAllStudents() if filters == [] else self._matchingStudents(filters)
+
+    def _matchingStudents(self, filters):
         matches = []
         for filter in filters:
             filterMatches = self._getStudentsFromFilter(filter)
