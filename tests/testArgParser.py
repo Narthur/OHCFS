@@ -45,3 +45,11 @@ class TestArgParser(unittest.TestCase):
     def testGetListSubcommand(self):
         subcommand = self.mockedArgParser.getSubcommand(['ohcfs','student','list'])
         self.assertEqual(subcommand, 'list')
+
+    def testGetConvertSubcommand(self):
+        subcommand = self.mockedArgParser.getSubcommand(['ohcfs','student','convert'])
+        self.assertEqual(subcommand, 'convert')
+
+    def testGetLeaderCommand(self):
+        command = self.mockedArgParser.getCommand(['ohcfs','leader'])
+        self.assertEqual(command, 'leader')
