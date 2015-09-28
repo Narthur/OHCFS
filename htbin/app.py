@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: UTF-8 -*-
-# enable debugging
 
+# If this page isn't working, try executing `chmod +x app.py` in terminal.
+
+# enable debugging
 import cgitb
 cgitb.enable()
 
