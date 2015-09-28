@@ -3,4 +3,4 @@ class WebApp:
         self.htmlGenerator = htmlGenerator
 
     def getOutput(self):
-        self.htmlGenerator.h1('OHCFS')
+        return self.htmlGenerator.h1('OHCFS')
