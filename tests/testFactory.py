@@ -17,3 +17,7 @@ class TestFactory(unittest.TestCase):
         sys.argv = ['ohcfs','student','add','john','doe']
         argHandler = self.factory.makeArgHandler()
         self.assertIsInstance(argHandler, StudentCli.StudentCli)
+
+    def testHasMakeWebAppMethod(self):
+        self.assertTrue(hasattr(self.factory,'makeWebApp'))
+        

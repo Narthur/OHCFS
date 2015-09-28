@@ -1,5 +1,5 @@
 from classes import Gui,TkinterInterface,StudentCli,ArgParser,Database,SqliteInterface,TerminalInterface
-from classes import Tabulate,StudentManager
+from classes import Tabulate,StudentManager,WebApp,HtmlGenerator
 import sys
 
 
@@ -41,3 +41,10 @@ class Factory:
 
     def makeArgParser(self):
         return ArgParser.ArgParser()
+
+    def makeHtmlGenerator(self):
+        return HtmlGenerator.HtmlGenerator()
+
+    def makeWebApp(self):
+        htmlGenerator = self.makeHtmlGenerator()
+        return WebApp.WebApp(htmlGenerator)

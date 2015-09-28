@@ -7,6 +7,10 @@
 import cgitb
 cgitb.enable()
 
-print "Content-Type: text/plain;charset=utf-8"
+from classes import Factory
+factory = Factory.Factory()
+webApp = factory.makeWebApp()
+
+print "Content-Type: text/html"
 print
-print "Hello World!"
+print webApp.getOutput()
