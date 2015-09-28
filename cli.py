@@ -1,3 +1,8 @@
+#!/usr/bin/env python
+
+# That first line makes this file runnable by executing `./cli.py` in Terminal. You may need to execute
+# `chmod +x cli.py` first.
+
 # Copyright (C) 2015  Ouachita Hills Ministries
 #
 # This program is free software; you can redistribute it and/or modify
