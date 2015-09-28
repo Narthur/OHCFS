@@ -10,4 +10,4 @@ class TestTerminalInterface(unittest.TestCase):
         self.assertIsInstance(self.view, TerminalInterface.TerminalInterface)
 
     def testOutputHeadExists(self):
-        self.view.outputMainHead('word')
+        self.assertTrue(hasattr(self.view,'outputMainHead'))
