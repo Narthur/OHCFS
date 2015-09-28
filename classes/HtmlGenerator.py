@@ -1,3 +1,3 @@
 class HtmlGenerator:
     def h1(self, text):
-        return '<h1>%s</h1>' % text
+        return '<h1>{}</h1>'.format(text)
