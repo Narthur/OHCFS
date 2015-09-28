@@ -1,2 +1,3 @@
 class WebApp:
-    pass
+    def getOutput(self):
+        pass
