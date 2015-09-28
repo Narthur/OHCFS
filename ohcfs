@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
-# That first line makes this file runnable by executing `./cli.py` in Terminal. You may need to execute
-# `chmod +x cli.py` first.
+# That first line makes this file runnable by executing `./ohcfs` in Terminal. You may need to execute
+# `chmod +x ohcfs` first.
 
 # Copyright (C) 2015  Ouachita Hills Ministries
 #
