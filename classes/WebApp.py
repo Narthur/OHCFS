@@ -1,3 +1,6 @@
 class WebApp:
+    def __init__(self, htmlGenerator):
+        self.htmlGenerator = htmlGenerator
+
     def getOutput(self):
-        pass
+        self.htmlGenerator.h1('OHCFS')
