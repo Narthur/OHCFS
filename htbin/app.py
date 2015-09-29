@@ -13,11 +13,3 @@ webApp = factory.makeWebApp()
 print "Content-Type: text/html"
 print
 print webApp.getOutput()
-
-print "<form method=get><input name='myField' /><input type=submit /></form>"
-
-form = cgi.FieldStorage()
-input = form.getfirst('myField',None)
-
-if (input != None):
-    print input
