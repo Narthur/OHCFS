@@ -4,10 +4,9 @@
 # If this page isn't working, try executing `chmod +x app.py` in terminal.
 
 # enable debugging
-import cgitb
-cgitb.enable()
-
+import cgitb; cgitb.enable()
 from classes import Factory
+
 factory = Factory.Factory()
 webApp = factory.makeWebApp()
 

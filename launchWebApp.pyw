@@ -4,7 +4,7 @@
 # - Execute `chmod +x launchWebApp.pyw`
 # - Make sure `.pyw` files are associated with Python Launcher on Unix or Python.exe on Windows
 
-import BaseHTTPServer, CGIHTTPServer, cgitb, os
+import BaseHTTPServer, CGIHTTPServer, cgitb, webbrowser
 cgitb.enable()
 
 server = BaseHTTPServer.HTTPServer
@@ -14,7 +14,7 @@ serverAddress = ("", PORT)
 
 print "serving at port", PORT
 
-os.system('open index.htm')
+webbrowser.open('localhost:{}/htbin/app.py'.format(PORT))
 
 httpd = server(serverAddress, handler)
 httpd.serve_forever()
