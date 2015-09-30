@@ -20,3 +20,8 @@ class TestHtmlGenerator(unittest.TestCase):
         link = self.htmlGenerator.link('google.com','Google')
         expected = '<a href="google.com">Google</a>'
         self.assertEqual(link,expected)
+
+    def testLinkMethodWithClass(self):
+        link = self.htmlGenerator.link('google.com','Google','current')
+        expected = '<a href="google.com" class="current">Google</a>'
+        self.assertEqual(link,expected)

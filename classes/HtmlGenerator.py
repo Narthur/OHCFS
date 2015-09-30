@@ -23,6 +23,9 @@ class HtmlGenerator:
             itemMarkup += self._li(item)
         return self._element('ul',itemMarkup)
 
-    def link(self, url, text):
-        props = {'href':url}
+    def link(self, url, text, classes=None):
+        if classes==None:
+            props = {'href':url}
+        else:
+            props = {'href':url,'class':classes}
         return self._element('a',text,props)
