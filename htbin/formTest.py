@@ -3,7 +3,7 @@
 
 # If this page isn't working, try executing `chmod +x [FILE]` in terminal.
 
-import cgitb, cgi; cgitb.enable()
+import cgitb, cgi, os; cgitb.enable()
 
 form = cgi.FieldStorage()
 

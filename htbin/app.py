@@ -9,7 +9,8 @@ from classes import Factory
 
 factory = Factory.Factory()
 webApp = factory.makeWebApp()
+fieldStorage = cgi.FieldStorage()
 
 print "Content-Type: text/html"
 print
-print webApp.getOutput()
+print webApp.getOutput(fieldStorage)
