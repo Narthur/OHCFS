@@ -12,6 +12,3 @@ class TestWebApp(unittest.TestCase):
     def testOutputsHeading(self):
         output = self.webApp.getOutput(self.mockFieldStorage)
         self.assertIsNot(output.count('heading'),0)
-
-    def testAcceptsFieldStorage(self):
-        self.webApp.getOutput(self.mockFieldStorage)
