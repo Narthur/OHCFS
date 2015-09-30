@@ -13,4 +13,5 @@ fieldStorage = cgi.FieldStorage()
 
 print "Content-Type: text/html"
 print
+print '<link rel="stylesheet" type="text/css" href="../style.css">'
 print webApp.getOutput(fieldStorage)
