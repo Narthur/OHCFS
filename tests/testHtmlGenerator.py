@@ -15,3 +15,11 @@ class TestHtmlGenerator(unittest.TestCase):
         list = self.htmlGenerator.list([1,2,3])
         expected = '<ul><li>1</li><li>2</li><li>3</li></ul>'
         self.assertEqual(list,expected)
+
+    def testLinkMethodTakesUrlAndText(self):
+        self.htmlGenerator.link('google.com','Google')
+
+    def testLinkMethodReturnsLink(self):
+        link = self.htmlGenerator.link('google.com','Google')
+        expected = '<a href="google.com">Google</a>'
+        self.assertEqual(link,expected)
