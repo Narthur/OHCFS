@@ -11,9 +11,6 @@ class TestHtmlGenerator(unittest.TestCase):
         expected = '<h1>head</h1>'
         self.assertEqual(heading, expected)
 
-    def testListMethodTakesItems(self):
-        self.htmlGenerator.list([1,2,3])
-
     def testListMethodReturnsList(self):
         list = self.htmlGenerator.list([1,2,3])
         expected = '<ul><li>1</li><li>2</li><li>3</li></ul>'
