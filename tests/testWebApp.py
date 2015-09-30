@@ -24,3 +24,8 @@ class TestWebApp(unittest.TestCase):
     def testReturnsList(self):
         output = self.webApp.getOutput(self.mockFieldStorage)
         self.assertIsNot(output.count('list'),0)
+
+    def testMarksNavLinkAsCurrent(self):
+        fieldStorage = Mock({'getvalue':'canvassers'})
+        self.webApp.getOutput(fieldStorage)
+        self.mockHtmlGenerator.mockCheckCall(1,'link','app.py?function=canvassers','Manage Canvassers','current')

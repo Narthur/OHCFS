@@ -3,10 +3,15 @@ class WebApp:
         self.htmlGenerator = htmlGenerator
 
     def getOutput(self, fieldStorage):
+        self.fieldStorage = fieldStorage
         html = self.htmlGenerator.h1('OHCFS')
         html += self._navigation()
         return html
 
     def _navigation(self):
-        link = self.htmlGenerator.link('app.py?function=canvassers', 'Manage Canvassers')
+        isCurrent = self.fieldStorage.getvalue('function') == 'canvassers'
+        if isCurrent:
+            link = self.htmlGenerator.link('app.py?function=canvassers', 'Manage Canvassers', 'current')
+        else:
+            link = self.htmlGenerator.link('app.py?function=canvassers', 'Manage Canvassers')
         return self.htmlGenerator.list([link])
