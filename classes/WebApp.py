@@ -4,10 +4,7 @@ class WebApp:
 
     def getOutput(self, fieldStorage):
         self.fieldStorage = fieldStorage
-        header = '''Content-Type: text/html
-                '''
-        html = self._makeHtml()
-        return header + html
+        return self._makeHtml()
 
     def _makeHtml(self):
         html = '<link rel="stylesheet" type="text/css" href="../style.css">'

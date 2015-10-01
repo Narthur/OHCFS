@@ -35,11 +35,6 @@ class TestWebApp(unittest.TestCase):
         self.mockedWebApp.getOutput(fieldStorage)
         self.mockHtmlGenerator.mockCheckCall(1,'link','app.py?function=canvassers','Manage Canvassers','current')
 
-    def testIncludesHeader(self):
-        header = '''Content-Type: text/html
-                '''
-        self._assertContains(header,self._mockedOutput())
-
     def testIncludesCss(self):
         css = '<link rel="stylesheet" type="text/css" href="../style.css">'
         self._assertContains(css,self._mockedOutput())
