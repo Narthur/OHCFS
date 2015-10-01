@@ -19,6 +19,6 @@ class WebApp:
         link = self.htmlGenerator.link('app.py?function=canvassers', 'Manage Canvassers', classes)
         return self.htmlGenerator.list([link])
 
-    def _makeLinkClasses(self,page):
-        isCurrent = self.fieldStorage.getvalue('function') == page
+    def _makeLinkClasses(self,slug):
+        isCurrent = self.fieldStorage.getvalue('function') == slug
         return 'current' if isCurrent else None

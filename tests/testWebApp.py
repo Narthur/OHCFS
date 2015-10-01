@@ -20,11 +20,11 @@ class TestWebApp(unittest.TestCase):
         self._assertContains('heading',self._getMockedOutput())
 
     def testMakesCanvassersLink(self):
-        self.mockedWebApp.getOutput(self.mockFieldStorage)
+        self._getMockedOutput()
         self.mockHtmlGenerator.mockCheckCall(2,'link','app.py?function=canvassers', 'Manage Canvassers', None)
 
     def testMakesList(self):
-        self.mockedWebApp.getOutput(self.mockFieldStorage)
+        self._getMockedOutput()
         self.mockHtmlGenerator.mockCheckCall(3,'list',['link'])
 
     def testReturnsList(self):
