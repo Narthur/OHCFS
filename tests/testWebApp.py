@@ -13,28 +13,36 @@ class TestWebApp(unittest.TestCase):
         contains = haystack.count(needle) > 0
         self.assertTrue(contains)
 
-    def _mockedOutput(self):
+    def _getMockedOutput(self):
         return self.mockedWebApp.getOutput(self.mockFieldStorage)
 
     def testOutputsHeading(self):
-        self._assertContains('heading',self._mockedOutput())
+        self._assertContains('heading',self._getMockedOutput())
 
     def testMakesCanvassersLink(self):
         self.mockedWebApp.getOutput(self.mockFieldStorage)
-        self.mockHtmlGenerator.mockCheckCall(1,'link','app.py?function=canvassers', 'Manage Canvassers', None)
+        self.mockHtmlGenerator.mockCheckCall(2,'link','app.py?function=canvassers', 'Manage Canvassers', None)
 
     def testMakesList(self):
         self.mockedWebApp.getOutput(self.mockFieldStorage)
-        self.mockHtmlGenerator.mockCheckCall(2,'list',['link'])
+        self.mockHtmlGenerator.mockCheckCall(3,'list',['link'])
 
     def testReturnsList(self):
-        self._assertContains('list',self._mockedOutput())
+        self._assertContains('list',self._getMockedOutput())
 
     def testMarksNavLinkAsCurrent(self):
         fieldStorage = Mock({'getvalue':'canvassers'})
         self.mockedWebApp.getOutput(fieldStorage)
-        self.mockHtmlGenerator.mockCheckCall(1,'link','app.py?function=canvassers','Manage Canvassers','current')
+        self.mockHtmlGenerator.mockCheckCall(2,'link','app.py?function=canvassers','Manage Canvassers','current')
 
     def testIncludesCss(self):
         css = '<link rel="stylesheet" type="text/css" href="../style.css">'
-        self._assertContains(css,self._mockedOutput())
+        self._assertContains(css,self._getMockedOutput())
+
+    def testMakesHeaderLink(self):
+        self._getMockedOutput()
+        self.mockHtmlGenerator.mockCheckCall(0,'link','app.py','OHCFS','current')
+
+    def testUsesLinkToMakeHeading(self):
+        self._getMockedOutput()
+        self.mockHtmlGenerator.mockCheckCall(1,'h1','link')
