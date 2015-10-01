@@ -9,9 +9,13 @@ class TestWebApp(unittest.TestCase):
         self.mockHtmlGenerator = Mock({'h1':'heading','link':'link','list':'list'})
         self.webApp = WebApp.WebApp(self.mockHtmlGenerator)
 
+    def _assertContains(self, needle, haystack):
+        contains = haystack.count(needle) > 0
+        self.assertTrue(contains)
+
     def testOutputsHeading(self):
         output = self.webApp.getOutput(self.mockFieldStorage)
-        self.assertIsNot(output.count('heading'),0)
+        self._assertContains('heading',output)
 
     def testMakesCanvassersLink(self):
         self.webApp.getOutput(self.mockFieldStorage)
@@ -23,9 +27,12 @@ class TestWebApp(unittest.TestCase):
 
     def testReturnsList(self):
         output = self.webApp.getOutput(self.mockFieldStorage)
-        self.assertIsNot(output.count('list'),0)
+        self._assertContains('list',output)
 
     def testMarksNavLinkAsCurrent(self):
         fieldStorage = Mock({'getvalue':'canvassers'})
         self.webApp.getOutput(fieldStorage)
         self.mockHtmlGenerator.mockCheckCall(1,'link','app.py?function=canvassers','Manage Canvassers','current')
+
+    def testIncludesHeader(self):
+        pass
