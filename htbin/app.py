@@ -11,7 +11,10 @@ factory = Factory.Factory()
 webApp = factory.makeWebApp()
 fieldStorage = cgi.FieldStorage()
 
-print "Content-Type: text/html"
-print
+def outputHeaders():
+    print "Content-Type: text/html"
+    print  # signals end of headers
+
+outputHeaders()
 
 print webApp.getOutput(fieldStorage)
