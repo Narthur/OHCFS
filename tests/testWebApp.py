@@ -21,7 +21,7 @@ class TestWebApp(unittest.TestCase):
 
     def testMakesCanvassersLink(self):
         self.mockedWebApp.getOutput(self.mockFieldStorage)
-        self.mockHtmlGenerator.mockCheckCall(1,'link','app.py?function=canvassers', 'Manage Canvassers')
+        self.mockHtmlGenerator.mockCheckCall(1,'link','app.py?function=canvassers', 'Manage Canvassers', None)
 
     def testMakesList(self):
         self.mockedWebApp.getOutput(self.mockFieldStorage)

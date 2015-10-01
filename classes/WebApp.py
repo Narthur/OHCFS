@@ -14,8 +14,6 @@ class WebApp:
 
     def _navigation(self):
         isCurrent = self.fieldStorage.getvalue('function') == 'canvassers'
-        if isCurrent:
-            link = self.htmlGenerator.link('app.py?function=canvassers', 'Manage Canvassers', 'current')
-        else:
-            link = self.htmlGenerator.link('app.py?function=canvassers', 'Manage Canvassers')
+        classes = 'current' if isCurrent else None
+        link = self.htmlGenerator.link('app.py?function=canvassers', 'Manage Canvassers', classes)
         return self.htmlGenerator.list([link])
