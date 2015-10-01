@@ -35,4 +35,7 @@ class TestWebApp(unittest.TestCase):
         self.mockHtmlGenerator.mockCheckCall(1,'link','app.py?function=canvassers','Manage Canvassers','current')
 
     def testIncludesHeader(self):
-        pass
+        header = '''Content-Type: text/html
+                '''
+        output = self.webApp.getOutput(self.mockFieldStorage)
+        self._assertContains(header,output)

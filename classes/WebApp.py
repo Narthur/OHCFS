@@ -4,9 +4,11 @@ class WebApp:
 
     def getOutput(self, fieldStorage):
         self.fieldStorage = fieldStorage
+        header = '''Content-Type: text/html
+                '''
         html = self.htmlGenerator.h1('OHCFS')
         html += self._navigation()
-        return html
+        return header + html
 
     def _navigation(self):
         isCurrent = self.fieldStorage.getvalue('function') == 'canvassers'
