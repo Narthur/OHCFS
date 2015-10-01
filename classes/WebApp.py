@@ -6,7 +6,8 @@ class WebApp:
         self.fieldStorage = fieldStorage
         header = '''Content-Type: text/html
                 '''
-        html = self.htmlGenerator.h1('OHCFS')
+        html = '<link rel="stylesheet" type="text/css" href="../style.css">'
+        html += self.htmlGenerator.h1('OHCFS')
         html += self._navigation()
         return header + html
 

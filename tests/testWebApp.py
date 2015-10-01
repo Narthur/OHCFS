@@ -39,3 +39,8 @@ class TestWebApp(unittest.TestCase):
                 '''
         output = self.webApp.getOutput(self.mockFieldStorage)
         self._assertContains(header,output)
+
+    def testIncludesCss(self):
+        css = '<link rel="stylesheet" type="text/css" href="../style.css">'
+        output = self.webApp.getOutput(self.mockFieldStorage)
+        self._assertContains(css,output)
