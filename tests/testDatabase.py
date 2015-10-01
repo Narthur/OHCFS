@@ -10,15 +10,15 @@ class TestDatabase(unittest.TestCase):
         self.mockedDatabase = Database.Database(self.mockSqliteInterface)
 
     def testGetAllStudentsGetsAllStudents(self):
-        self.mockedDatabase.getAllStudents()
+        self.mockedDatabase.getAllCanvassers()
         self.mockSqliteInterface.mockCheckCall(0,'executeQuery','SELECT * FROM student')
 
     def testGetAllStudentsReturnsAllStudents(self):
-        students = self.mockedDatabase.getAllStudents()
+        students = self.mockedDatabase.getAllCanvassers()
         self.assertEqual(students,self.mockStudents)
 
     def testAddsStudent(self):
-        self.mockedDatabase.addStudent('John','Doe')
+        self.mockedDatabase.addCanvasser('John','Doe')
         self.mockSqliteInterface.mockCheckCall(
             0,
             'executeQuery',
@@ -26,7 +26,7 @@ class TestDatabase(unittest.TestCase):
         )
 
     def testCapitalizesNames(self):
-        self.mockedDatabase.addStudent('john','doe')
+        self.mockedDatabase.addCanvasser('john','doe')
         self.mockSqliteInterface.mockCheckCall(
             0,
             'executeQuery',
@@ -34,7 +34,7 @@ class TestDatabase(unittest.TestCase):
         )
 
     def testConvertStudentToLeaderConvertsStudent(self):
-        self.mockedDatabase.convertStudentToLeader('John','Doe')
+        self.mockedDatabase.markCanvasserAsLeader('John','Doe')
         self.mockSqliteInterface.mockCheckCall(
             0,
             'executeQuery',
@@ -42,7 +42,7 @@ class TestDatabase(unittest.TestCase):
         )
 
     def testConvertStudentToLeaderCapitalizesNames(self):
-        self.mockedDatabase.convertStudentToLeader('john','doe')
+        self.mockedDatabase.markCanvasserAsLeader('john','doe')
         self.mockSqliteInterface.mockCheckCall(
             0,
             'executeQuery',

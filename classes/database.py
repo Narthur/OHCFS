@@ -32,18 +32,18 @@ class Database:
         elif studentId == 0 and firstName == '' and lastName == '':
             return None
 
-    def getAllStudents(self):
+    def getAllCanvassers(self):
         result = self.sqlite.executeQuery('SELECT * FROM student')
         return result
 
-    def addStudent(self, firstName, lastName):
+    def addCanvasser(self, firstName, lastName):
         firstName = firstName.capitalize()
         lastName = lastName.capitalize()
         format = "INSERT INTO student (firstName, lastName, isLeader) VALUES ('{0}', '{1}', 0)"
         query = format.format(firstName, lastName)
         self.sqlite.executeQuery(query)
 
-    def convertStudentToLeader(self, firstName, lastName):
+    def markCanvasserAsLeader(self, firstName, lastName):
         firstName = firstName.capitalize()
         lastName = lastName.capitalize()
         format = "UPDATE student SET isLeader=1 WHERE firstName='{0}' AND lastName='{1}'"

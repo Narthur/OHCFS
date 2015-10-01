@@ -1,4 +1,4 @@
-class StudentManager:
+class CanvasserManager:
     def __init__(self, db):
         self.db = db
 

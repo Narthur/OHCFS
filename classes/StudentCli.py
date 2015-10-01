@@ -22,7 +22,7 @@ class StudentCli:
         confirmed = self._confirmSelection(students)
         if confirmed:
             for student in students:
-                self.studentManager.convertStudentToLeader(student[1], student[2])
+                self.studentManager.markCanvasserAsLeader(student[1], student[2])
 
     def _confirmSelection(self, students):
         self._displaySelection(students)
@@ -44,4 +44,4 @@ class StudentCli:
     def _addStudents(self):
         for filter in self.filters:
             names = filter.split(' ')
-            self.studentManager.addStudent(names[0], names[1])
+            self.studentManager.addCanvasser(names[0], names[1])

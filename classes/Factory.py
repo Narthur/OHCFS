@@ -1,5 +1,5 @@
 from classes import Gui,TkinterInterface,StudentCli,ArgParser,Database,SqliteInterface,TerminalInterface
-from classes import Tabulate,StudentManager,WebApp,HtmlGenerator
+from classes import Tabulate,CanvasserManager,WebApp,HtmlGenerator
 import sys
 
 
@@ -24,12 +24,12 @@ class Factory:
     def makeTabulate(self):
         return Tabulate.Tabulate()
 
-    def makeStudentManager(self):
+    def makeCanvasserManager(self):
         db = self.makeDatabase()
-        return StudentManager.StudentManager(db)
+        return CanvasserManager.CanvasserManager(db)
 
     def makeArgHandler(self):
-        studentManager = self.makeStudentManager()
+        canvasserManager = self.makeCanvasserManager()
         terminal = self.makeTerminalInterface()
         tabulate = self.makeTabulate()
         args = sys.argv
@@ -37,7 +37,7 @@ class Factory:
         command = argParser.getCommand(args)
         subCommand = argParser.getSubcommand(args)
         filters = argParser.getFilters(args)
-        return StudentCli.StudentCli(studentManager, terminal, tabulate, command, subCommand, filters)
+        return StudentCli.StudentCli(canvasserManager, terminal, tabulate, command, subCommand, filters)
 
     def makeArgParser(self):
         return ArgParser.ArgParser()

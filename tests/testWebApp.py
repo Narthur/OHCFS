@@ -7,6 +7,7 @@ class TestWebApp(unittest.TestCase):
     def setUp(self):
         self.mockFieldStorage = Mock()
         self.mockHtmlGenerator = Mock({'h1':'heading','link':'link','list':'list'})
+        self.mockCanvasserManager = Mock()
         self.mockedWebApp = WebApp.WebApp(self.mockHtmlGenerator)
 
     def _assertContains(self, needle, haystack):
@@ -46,3 +47,6 @@ class TestWebApp(unittest.TestCase):
     def testUsesLinkToMakeHeading(self):
         self._getMockedOutput()
         self.mockHtmlGenerator.mockCheckCall(1,'h1','link')
+
+    def PASStestGetsEveryoneFromFilters(self):
+        self.mockCanvasserManager.mockCheckCall(0,'getEveryoneFromFilters')
