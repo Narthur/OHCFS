@@ -1,5 +1,7 @@
 body {
     font-family:'Courier',monospace;
+    margin:0 0 0 240px;
+    padding:10px;
 }
 
 .current {
@@ -10,4 +12,23 @@ td, th {
     border: 1px solid black;
     padding: 3px 10px;
     text-align: left;
+}
+
+.header {
+    position:fixed;
+    color:white;
+    width:220px;
+    background-color:black;
+    height:100%;
+    left:0;
+    top:0;
+    padding:0 10px;
+}
+
+.header a {
+    color:white;
+}
+
+.header a.current {
+    color:blue;
 }
