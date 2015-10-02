@@ -5,3 +5,9 @@ body {
 .current {
     background-color:yellow;
 }
+
+td, th {
+    border: 1px solid black;
+    padding: 3px 10px;
+    text-align: left;
+}
