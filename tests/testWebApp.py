@@ -13,7 +13,7 @@ class TestWebApp(unittest.TestCase):
             'table':'table'
         })
         self.mockCanvasserManager = Mock({'getEveryoneFromFilters':[['everyone']]})
-        self.mockedWebApp = WebApp.WebApp(self.mockHtmlGenerator, self.mockCanvasserManager)
+        self.mockedWebApp = WebApp.WebApp(self.mockFieldStorage, self.mockHtmlGenerator, self.mockCanvasserManager)
 
     def _assertContains(self, needle, haystack):
         contains = haystack.count(needle) > 0
@@ -22,7 +22,12 @@ class TestWebApp(unittest.TestCase):
     def _getMockedOutput(self, pageSlug=None):
         if pageSlug is not None:
             self.mockFieldStorage = Mock({'getvalue':pageSlug})
-        return self.mockedWebApp.getOutput(self.mockFieldStorage)
+            self.mockedWebApp = WebApp.WebApp(
+                self.mockFieldStorage,
+                self.mockHtmlGenerator,
+                self.mockCanvasserManager
+            )
+        return self.mockedWebApp.getOutput()
 
     def testOutputsHeading(self):
         self._assertContains('heading',self._getMockedOutput())

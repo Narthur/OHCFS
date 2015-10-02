@@ -37,7 +37,14 @@ class Factory:
         command = argParser.getCommand(args)
         subCommand = argParser.getSubcommand(args)
         filters = argParser.getFilters(args)
-        return StudentCli.StudentCli(canvasserManager, terminal, tabulate, command, subCommand, filters)
+        return StudentCli.StudentCli(
+            canvasserManager,
+            terminal,
+            tabulate,
+            command,
+            subCommand,
+            filters
+        )
 
     def makeArgParser(self):
         return ArgParser.ArgParser()
@@ -45,7 +52,7 @@ class Factory:
     def makeHtmlGenerator(self):
         return HtmlGenerator.HtmlGenerator()
 
-    def makeWebApp(self):
+    def makeWebApp(self, fieldStorage):
         htmlGenerator = self.makeHtmlGenerator()
         canvasserManager = self.makeCanvasserManager()
-        return WebApp.WebApp(htmlGenerator,canvasserManager)
+        return WebApp.WebApp(fieldStorage, htmlGenerator, canvasserManager)

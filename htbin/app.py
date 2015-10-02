@@ -7,9 +7,10 @@
 import cgitb, cgi; cgitb.enable()
 from classes import Factory
 
-factory = Factory.Factory()
-webApp = factory.makeWebApp()
 fieldStorage = cgi.FieldStorage()
+factory = Factory.Factory()
+webApp = factory.makeWebApp(fieldStorage)
+
 
 def outputHeaders():
     print "Content-Type: text/html"
@@ -17,4 +18,4 @@ def outputHeaders():
 
 outputHeaders()
 
-print webApp.getOutput(fieldStorage)
+print webApp.getOutput()
