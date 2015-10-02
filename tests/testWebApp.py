@@ -10,7 +10,8 @@ class TestWebApp(unittest.TestCase):
             'h1':'heading',
             'link':'link',
             'list':'navList',
-            'table':'table'
+            'table':'table',
+            'div':'div'
         })
         self.mockCanvasserManager = Mock({
             'getEveryoneFromFilters':[['everyone']],
@@ -32,9 +33,6 @@ class TestWebApp(unittest.TestCase):
             )
         return self.mockedWebApp.getOutput()
 
-    def testOutputsHeading(self):
-        self._assertContains('heading',self._getMockedOutput())
-
     def testMakesCanvassersLink(self):
         self._getMockedOutput()
         self.mockHtmlGenerator.mockCheckCall(2,'link','app.py?function=canvassers', 'Manage Canvassers', None)
@@ -43,16 +41,9 @@ class TestWebApp(unittest.TestCase):
         self._getMockedOutput()
         self.mockHtmlGenerator.mockCheckCall(4,'list',['link','link'])
 
-    def testReturnsList(self):
-        self._assertContains('navList',self._getMockedOutput())
-
     def testMarksNavLinkAsCurrent(self):
         self._getMockedOutput('canvassers')
         self.mockHtmlGenerator.mockCheckCall(2,'link','app.py?function=canvassers','Manage Canvassers','current')
-
-    def testIncludesCss(self):
-        css = '<link rel="stylesheet" type="text/css" href="../style.css">'
-        self._assertContains(css,self._getMockedOutput())
 
     def testMakesHeaderLink(self):
         self._getMockedOutput()
@@ -72,7 +63,7 @@ class TestWebApp(unittest.TestCase):
 
     def testMakesTableFromEveryone(self):
         self._getMockedOutput('canvassers')
-        self.mockHtmlGenerator.mockCheckCall(5,'table',[['everyone']],['names'])
+        self.mockHtmlGenerator.mockCheckCall(6,'table',[['everyone']],['names'])
 
     def testOutputsCanvasserList(self):
         output = self._getMockedOutput('canvassers')
@@ -81,3 +72,7 @@ class TestWebApp(unittest.TestCase):
     def testGetsCanvasserAttributeNames(self):
         self._getMockedOutput('canvassers')
         self.mockCanvasserManager.mockCheckCall(0,'getCanvasserAttributeNames')
+
+    def testSurroundsHeadWithDiv(self):
+        self._getMockedOutput()
+        self.mockHtmlGenerator.mockCheckCall(5,'div','<link rel="stylesheet" type="text/css" href="../style.css">headingnavList','header')

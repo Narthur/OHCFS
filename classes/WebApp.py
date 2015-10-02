@@ -13,7 +13,8 @@ class WebApp:
         headLink = self.htmlGenerator.link('app.py', 'OHCFS', classes)
         title = self.htmlGenerator.h1(headLink)
         nav = self._navigation()
-        return css + title + nav
+        header = self.htmlGenerator.div(css + title + nav, 'header')
+        return header
 
     def _pageBody(self):
         if self.fieldStorage.getvalue('function') == 'canvassers':
