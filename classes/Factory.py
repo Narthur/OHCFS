@@ -1,27 +1,34 @@
-from classes import Gui,TkinterInterface,StudentCli,ArgParser,Database,SqliteInterface,TerminalInterface
-from classes import Tabulate,CanvasserManager,WebApp,HtmlGenerator
+from classes import Gui, TkinterInterface, StudentCli, ArgParser, Database, SqliteInterface
+from classes import TerminalInterface, Tabulate, CanvasserManager, WebApp, HtmlGenerator
 import sys
 
 
 class Factory:
-    def makeTkinterInterface(self):
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def makeTkinterInterface():
         return TkinterInterface.TkinterInterface()
 
     def makeGui(self):
         tk = self.makeTkinterInterface()
         return Gui.Gui(tk)
 
-    def makeSqliteInterface(self):
+    @staticmethod
+    def makeSqliteInterface():
         return SqliteInterface.SqliteInterface()
 
     def makeDatabase(self):
         sqlite = self.makeSqliteInterface()
         return Database.Database(sqlite)
 
-    def makeTerminalInterface(self):
+    @staticmethod
+    def makeTerminalInterface():
         return TerminalInterface.TerminalInterface()
 
-    def makeTabulate(self):
+    @staticmethod
+    def makeTabulate():
         return Tabulate.Tabulate()
 
     def makeCanvasserManager(self):
@@ -46,10 +53,12 @@ class Factory:
             filters
         )
 
-    def makeArgParser(self):
+    @staticmethod
+    def makeArgParser():
         return ArgParser.ArgParser()
 
-    def makeHtmlGenerator(self):
+    @staticmethod
+    def makeHtmlGenerator():
         return HtmlGenerator.HtmlGenerator()
 
     def makeWebApp(self, fieldStorage):
