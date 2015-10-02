@@ -6,7 +6,7 @@ class HtmlGenerator:
 
     def _propsMarkup(self, props):
         propsMarkup = ''
-        if props is not None:
+        if props:
             for prop, value in props.iteritems():
                 propsMarkup += ' {}="{}"'.format(prop, value)
         return propsMarkup
@@ -24,10 +24,10 @@ class HtmlGenerator:
         return self._element('ul',itemMarkup)
 
     def link(self, url, text, classes=None):
-        if classes is None:
-            props = {'href':url}
-        else:
+        if classes:
             props = {'href':url,'class':classes}
+        else:
+            props = {'href':url}
         return self._element('a',text,props)
 
     def table(self, tabularData, headings=None):
