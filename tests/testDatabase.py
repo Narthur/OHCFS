@@ -5,20 +5,20 @@ from mock import Mock, ReturnValues
 
 class TestDatabase(unittest.TestCase):
     def setUp(self):
-        self.mockStudents = [[0,'John','Doe',0],[1,'Jo','Doe',0]]
-        self.mockSqliteInterface = Mock({'executeQuery':self.mockStudents})
+        self.mockStudents = [[0, 'John', 'Doe', 0], [1, 'Jo', 'Doe', 0]]
+        self.mockSqliteInterface = Mock({'executeQuery': self.mockStudents})
         self.mockedDatabase = Database.Database(self.mockSqliteInterface)
 
     def testGetAllStudentsGetsAllStudents(self):
         self.mockedDatabase.getAllCanvassers()
-        self.mockSqliteInterface.mockCheckCall(0,'executeQuery','SELECT * FROM student')
+        self.mockSqliteInterface.mockCheckCall(0, 'executeQuery', 'SELECT * FROM student')
 
     def testGetAllStudentsReturnsAllStudents(self):
         students = self.mockedDatabase.getAllCanvassers()
-        self.assertEqual(students,self.mockStudents)
+        self.assertEqual(students, self.mockStudents)
 
     def testAddsStudent(self):
-        self.mockedDatabase.addCanvasser('John','Doe')
+        self.mockedDatabase.addCanvasser('John', 'Doe')
         self.mockSqliteInterface.mockCheckCall(
             0,
             'executeQuery',
@@ -26,7 +26,7 @@ class TestDatabase(unittest.TestCase):
         )
 
     def testCapitalizesNames(self):
-        self.mockedDatabase.addCanvasser('john','doe')
+        self.mockedDatabase.addCanvasser('john', 'doe')
         self.mockSqliteInterface.mockCheckCall(
             0,
             'executeQuery',
@@ -34,7 +34,7 @@ class TestDatabase(unittest.TestCase):
         )
 
     def testConvertStudentToLeaderConvertsStudent(self):
-        self.mockedDatabase.markCanvasserAsLeader('John','Doe')
+        self.mockedDatabase.markCanvasserAsLeader('John', 'Doe')
         self.mockSqliteInterface.mockCheckCall(
             0,
             'executeQuery',
@@ -42,7 +42,7 @@ class TestDatabase(unittest.TestCase):
         )
 
     def testConvertStudentToLeaderCapitalizesNames(self):
-        self.mockedDatabase.markCanvasserAsLeader('john','doe')
+        self.mockedDatabase.markCanvasserAsLeader('john', 'doe')
         self.mockSqliteInterface.mockCheckCall(
             0,
             'executeQuery',
