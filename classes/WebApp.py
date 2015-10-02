@@ -5,18 +5,23 @@ class WebApp:
 
     def getOutput(self, fieldStorage):
         self.fieldStorage = fieldStorage
-        return self._makeHtml()
+        return self._pageHead() + self._pageBody()
 
-    def _makeHtml(self):
-        html = '<link rel="stylesheet" type="text/css" href="../style.css">'
+    def _pageHead(self):
+        css = '<link rel="stylesheet" type="text/css" href="../style.css">'
         classes = self._makeLinkClasses(None)
-        headLink = self.htmlGenerator.link('app.py','OHCFS',classes)
-        html += self.htmlGenerator.h1(headLink)
-        html += self._navigation()
+        headLink = self.htmlGenerator.link('app.py', 'OHCFS', classes)
+        title = self.htmlGenerator.h1(headLink)
+        nav = self._navigation()
+        return css + title + nav
+
+    def _pageBody(self):
         if self.fieldStorage.getvalue('function') == 'canvassers':
             canvassers = self.canvasserManager.getEveryoneFromFilters([])
-            html += self.htmlGenerator.table(canvassers)
-        return html
+            body = self.htmlGenerator.table(canvassers)
+        else:
+            body = ''
+        return body
 
     def _navigation(self):
         links = list()
