@@ -13,15 +13,14 @@ class CanvasserManager:
         return matches
 
     def _getCanvassersFromFilter(self, f):
-        students = self.db.getAllCanvassers()
         names = f.split(' ')
         if len(names) == 1:
-            return self._findPeopleMatchingSingleName(names, students)
+            return self._findPeopleMatchingSingleName(names)
         else:
-            return self._findPeopleMatchingTwoNames(names, students)
+            return self._findPeopleMatchingTwoNames(names)
 
-    @staticmethod
-    def _findPeopleMatchingTwoNames(names, students):
+    def _findPeopleMatchingTwoNames(self, names):
+        students = self.db.getAllCanvassers()
         matches = []
         firstName = names[0].lower()
         lastName = names[1].lower()
@@ -32,8 +31,8 @@ class CanvasserManager:
                 matches.append(student)
         return matches
 
-    @staticmethod
-    def _findPeopleMatchingSingleName(names, students):
+    def _findPeopleMatchingSingleName(self, names):
+        students = self.db.getAllCanvassers()
         matches = []
         singleName = names[0].lower()
         for student in students:
