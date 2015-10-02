@@ -21,6 +21,10 @@ td, th {
     padding:0 10px;
 }
 
+h1 a {
+    padding:10px;
+}
+
 .header a {
     color:white;
 }
@@ -39,7 +43,7 @@ td, th {
     padding:3px 10px;
 }
 
-.header li .current, .header li a:hover {
+.header .current, a:hover {
     background-color:white;
     color:black;
 }
