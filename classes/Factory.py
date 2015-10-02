@@ -13,6 +13,7 @@ class Factory:
 
     def makeGui(self):
         tk = self.makeTkinterInterface()
+
         return Gui.Gui(tk)
 
     @staticmethod
@@ -33,6 +34,7 @@ class Factory:
 
     def makeCanvasserManager(self):
         db = self.makeDatabase()
+
         return CanvasserManager.CanvasserManager(db)
 
     def makeArgHandler(self):
@@ -44,6 +46,7 @@ class Factory:
         command = argParser.getCommand(args)
         subCommand = argParser.getSubCommand(args)
         filters = argParser.getFilters(args)
+
         return StudentCli.StudentCli(
             canvasserManager,
             terminal,
@@ -64,4 +67,5 @@ class Factory:
     def makeWebApp(self, fieldStorage):
         htmlGenerator = self.makeHtmlGenerator()
         canvasserManager = self.makeCanvasserManager()
+
         return WebApp.WebApp(fieldStorage, htmlGenerator, canvasserManager)
