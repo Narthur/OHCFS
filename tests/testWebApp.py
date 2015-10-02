@@ -6,8 +6,12 @@ from mock import Mock, ReturnValues
 class TestWebApp(unittest.TestCase):
     def setUp(self):
         self.mockFieldStorage = Mock()
-        self.mockHtmlGenerator = Mock({'h1':'heading','link':'link','list':'list'})
-        self.mockCanvasserManager = Mock()
+        self.mockHtmlGenerator = Mock({
+            'h1':'heading',
+            'link':'link',
+            'list':ReturnValues('navList','canvasserList')
+        })
+        self.mockCanvasserManager = Mock({'getEveryoneFromFilters':['everyone']})
         self.mockedWebApp = WebApp.WebApp(self.mockHtmlGenerator, self.mockCanvasserManager)
 
     def _assertContains(self, needle, haystack):
@@ -31,7 +35,7 @@ class TestWebApp(unittest.TestCase):
         self.mockHtmlGenerator.mockCheckCall(4,'list',['link','link'])
 
     def testReturnsList(self):
-        self._assertContains('list',self._getMockedOutput())
+        self._assertContains('navList',self._getMockedOutput())
 
     def testMarksNavLinkAsCurrent(self):
         self._getMockedOutput('canvassers')
@@ -57,3 +61,10 @@ class TestWebApp(unittest.TestCase):
         self._getMockedOutput('canvassers')
         self.mockCanvasserManager.mockCheckCall(0,'getEveryoneFromFilters',[])
 
+    def testMakesListFromEveryone(self):
+        self._getMockedOutput('canvassers')
+        self.mockHtmlGenerator.mockCheckCall(5,'list',['everyone'])
+
+    def testOutputsCanvasserList(self):
+        output = self._getMockedOutput('canvassers')
+        self._assertContains('canvasserList',output)
