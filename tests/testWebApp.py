@@ -14,7 +14,9 @@ class TestWebApp(unittest.TestCase):
         contains = haystack.count(needle) > 0
         self.assertTrue(contains)
 
-    def _getMockedOutput(self):
+    def _getMockedOutput(self, pageSlug=None):
+        if pageSlug is not None:
+            self.mockFieldStorage = Mock({'getvalue':pageSlug})
         return self.mockedWebApp.getOutput(self.mockFieldStorage)
 
     def testOutputsHeading(self):
@@ -32,8 +34,7 @@ class TestWebApp(unittest.TestCase):
         self._assertContains('list',self._getMockedOutput())
 
     def testMarksNavLinkAsCurrent(self):
-        fieldStorage = Mock({'getvalue':'canvassers'})
-        self.mockedWebApp.getOutput(fieldStorage)
+        self._getMockedOutput('canvassers')
         self.mockHtmlGenerator.mockCheckCall(2,'link','app.py?function=canvassers','Manage Canvassers','current')
 
     def testIncludesCss(self):
@@ -53,7 +54,6 @@ class TestWebApp(unittest.TestCase):
         self.mockHtmlGenerator.mockCheckCall(3,'link','app.py?function=daily', 'Daily', None)
 
     def testGetsEveryoneFromFilters(self):
-        fieldStorage = Mock({'getvalue':'canvassers'})
-        self.mockedWebApp.getOutput(fieldStorage)
+        self._getMockedOutput('canvassers')
         self.mockCanvasserManager.mockCheckCall(0,'getEveryoneFromFilters',[])
 
