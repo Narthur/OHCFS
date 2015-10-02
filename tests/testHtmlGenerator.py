@@ -31,3 +31,10 @@ class TestHtmlGenerator(unittest.TestCase):
         expected = '<table><tbody><tr><td>cell</td></tr></tbody></table>'
         table = self.htmlGenerator.table(data)
         self.assertEqual(expected,table)
+
+    def testTableMethodAllowsAdditionOfHeaders(self):
+        data = [['cell']]
+        heads = ['head']
+        expected = '<table><thead><tr><th>head</th></tr></thead><tbody><tr><td>cell</td></tr></tbody></table>'
+        table = self.htmlGenerator.table(data, heads)
+        self.assertEqual(expected,table)

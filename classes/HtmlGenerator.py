@@ -30,9 +30,26 @@ class HtmlGenerator:
             props = {'href':url,'class':classes}
         return self._element('a',text,props)
 
-    def table(self, tabularData):
+    def table(self, tabularData, headings=None):
+        htmlHead = self._tableHead(headings)
         htmlBody = self._tableBody(tabularData)
-        return self._element('table', htmlBody)
+        return self._element('table', htmlHead + htmlBody)
+
+    def _tableHead(self, headings):
+        if headings:
+            headingsRow = self._tableHeadingsRow(headings)
+            return self._element('thead', headingsRow)
+        else:
+            return ''
+
+    def _tableHeadingsRow(self, headings):
+        headingsHtml = ''
+        for heading in headings:
+            headingsHtml += self._tableHeaderCell(heading)
+        return self._element('tr', headingsHtml)
+
+    def _tableHeaderCell(self, heading):
+        return self._element('th', heading)
 
     def _tableBody(self, tabularData):
         htmlRows = ''
