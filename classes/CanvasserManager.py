@@ -3,16 +3,16 @@ class CanvasserManager:
         self.db = db
 
     def getEveryoneFromFilters(self, filters):
-        return self.db.getAllCanvassers() if filters == [] else self._matchingPeople(filters)
+        return self.db.getAllCanvassers() if filters == [] else self._matchingCanvassers(filters)
 
-    def _matchingPeople(self, filters):
+    def _matchingCanvassers(self, filters):
         matches = []
         for filter in filters:
-            filterMatches = self._getEveryoneFromFilter(filter)
+            filterMatches = self._getCanvassersFromFilter(filter)
             matches += filterMatches
         return matches
 
-    def _getEveryoneFromFilter(self, filter):
+    def _getCanvassersFromFilter(self, filter):
         students = self.db.getAllCanvassers()
         matches = []
         names = filter.split(' ')
@@ -22,7 +22,8 @@ class CanvasserManager:
             matches += self._findPeopleMatchingTwoNames(names, students)
         return matches
 
-    def _findPeopleMatchingTwoNames(self, names, students):
+    @staticmethod
+    def _findPeopleMatchingTwoNames(names, students):
         matches = []
         firstName = names[0].lower()
         lastName = names[1].lower()
@@ -33,7 +34,8 @@ class CanvasserManager:
                 matches.append(student)
         return matches
 
-    def _findPeopleMatchingSingleName(self, names, students):
+    @staticmethod
+    def _findPeopleMatchingSingleName(names, students):
         matches = []
         singleName = names[0].lower()
         for student in students:
@@ -43,11 +45,11 @@ class CanvasserManager:
                 matches.append(student)
         return matches
 
-    def convertStudentToLeader(self, firstName, lastName):
-        self.db.convertStudentToLeader(firstName,lastName)
+    def markCanvasserAsLeader(self, firstName, lastName):
+        self.db.markCanvasserAsLeader(firstName, lastName)
 
     def addStudent(self, firstName, lastName):
-        self.db.addStudent(firstName,lastName)
+        self.db.addStudent(firstName, lastName)
 
     def getCanvasserAttributeNames(self):
         return self.db.getColumnNames('student')

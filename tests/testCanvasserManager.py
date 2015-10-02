@@ -31,8 +31,8 @@ class TestCanvasserManager(unittest.TestCase):
         self.assertEqual(students, [[0,'John','Doe',0]])
 
     def testConvertStudentToLeaderConvertsStudentToLeader(self):
-        self.mockedCanvasserManager.convertStudentToLeader('John','Doe')
-        self.mockDb.mockCheckCall(0,'convertStudentToLeader','John','Doe')
+        self.mockedCanvasserManager.markCanvasserAsLeader('John','Doe')
+        self.mockDb.mockCheckCall(0,'markCanvasserAsLeader','John','Doe')
 
     def testAddStudentAddsStudent(self):
         self.mockedCanvasserManager.addStudent('John','Doe')
