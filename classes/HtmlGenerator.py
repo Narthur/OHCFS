@@ -2,7 +2,7 @@ class HtmlGenerator:
     def _element(self, name, content, props=None):
         propsMarkup = self._propsMarkup(props)
 
-        return '<{}{}>{}</{}>'.format(name,propsMarkup,content,name)
+        return '<{}{}>{}</{}>'.format(name, propsMarkup, content, name)
 
     def _propsMarkup(self, props):
         propsMarkup = ''
@@ -12,23 +12,23 @@ class HtmlGenerator:
         return propsMarkup
 
     def h1(self, content):
-        return self._element('h1',content)
+        return self._element('h1', content)
 
     def _li(self, content):
-        return self._element('li',content)
+        return self._element('li', content)
 
     def list(self, items):
         itemMarkup = ''
         for item in items:
             itemMarkup += self._li(item)
-        return self._element('ul',itemMarkup)
+        return self._element('ul', itemMarkup)
 
     def link(self, url, text, classes=None):
         if classes:
-            props = {'href':url,'class':classes}
+            props = {'href': url, 'class': classes}
         else:
-            props = {'href':url}
-        return self._element('a',text,props)
+            props = {'href': url}
+        return self._element('a', text, props)
 
     def table(self, tabularData, headings=None):
         htmlHead = self._tableHead(headings)
@@ -65,3 +65,8 @@ class HtmlGenerator:
 
     def _tableCell(self, cell):
         return self._element('td', cell)
+
+    def div(self, content, classes=None):
+        if classes:
+            props = {'class': classes}
+        return self._element('div', content, props)

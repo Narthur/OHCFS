@@ -38,3 +38,8 @@ class TestHtmlGenerator(unittest.TestCase):
         expected = '<table><thead><tr><th>head</th></tr></thead><tbody><tr><td>cell</td></tr></tbody></table>'
         table = self.htmlGenerator.table(data, heads)
         self.assertEqual(expected,table)
+
+    def testDivMethod(self):
+        actual = self.htmlGenerator.div('content','class')
+        expected = '<div class="class">content</div>'
+        self.assertEqual(expected,actual)
