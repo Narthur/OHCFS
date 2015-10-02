@@ -35,7 +35,7 @@ class Factory:
         args = sys.argv
         argParser = self.makeArgParser()
         command = argParser.getCommand(args)
-        subCommand = argParser.getSubcommand(args)
+        subCommand = argParser.getSubCommand(args)
         filters = argParser.getFilters(args)
         return StudentCli.StudentCli(
             canvasserManager,

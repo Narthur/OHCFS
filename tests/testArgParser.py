@@ -19,7 +19,7 @@ class TestArgParser(unittest.TestCase):
         self.assertEqual(command, 'student')
 
     def testGetSubcommand(self):
-        subcommand = self.mockedArgParser.getSubcommand(['ohcfs','student','add'])
+        subcommand = self.mockedArgParser.getSubCommand(['ohcfs','student','add'])
         self.assertEqual(subcommand, 'add')
 
     def testGetSimpleFilter(self):
@@ -43,11 +43,11 @@ class TestArgParser(unittest.TestCase):
         self.assertEqual(filters,[])
 
     def testGetListSubcommand(self):
-        subcommand = self.mockedArgParser.getSubcommand(['ohcfs','student','list'])
+        subcommand = self.mockedArgParser.getSubCommand(['ohcfs','student','list'])
         self.assertEqual(subcommand, 'list')
 
     def testGetConvertSubcommand(self):
-        subcommand = self.mockedArgParser.getSubcommand(['ohcfs','student','convert'])
+        subcommand = self.mockedArgParser.getSubCommand(['ohcfs','student','convert'])
         self.assertEqual(subcommand, 'convert')
 
     def testGetLeaderCommand(self):
