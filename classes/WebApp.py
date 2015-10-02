@@ -18,10 +18,9 @@ class WebApp:
     def _pageBody(self):
         if self.fieldStorage.getvalue('function') == 'canvassers':
             canvassers = self.canvasserManager.getEveryoneFromFilters([])
-            body = self.htmlGenerator.table(canvassers)
+            return self.htmlGenerator.table(canvassers)
         else:
-            body = ''
-        return body
+            return ''
 
     def _navigation(self):
         links = list()
