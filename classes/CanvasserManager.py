@@ -3,7 +3,7 @@ class CanvasserManager:
         self.db = db
 
     def getEveryoneFromFilters(self, filters):
-        return self.db.getAllStudents() if filters == [] else self._matchingPeople(filters)
+        return self.db.getAllCanvassers() if filters == [] else self._matchingPeople(filters)
 
     def _matchingPeople(self, filters):
         matches = []
@@ -13,7 +13,7 @@ class CanvasserManager:
         return matches
 
     def _getEveryoneFromFilter(self, filter):
-        students = self.db.getAllStudents()
+        students = self.db.getAllCanvassers()
         matches = []
         names = filter.split(' ')
         if len(names) == 1:
