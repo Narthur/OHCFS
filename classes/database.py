@@ -47,5 +47,5 @@ class Database:
         firstName = firstName.capitalize()
         lastName = lastName.capitalize()
         format = "UPDATE student SET isLeader=1 WHERE firstName='{0}' AND lastName='{1}'"
-        query = format.format(firstName,lastName)
+        query = format.format(firstName, lastName)
         self.sqlite.executeQuery(query)
