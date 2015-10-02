@@ -31,12 +31,20 @@ class HtmlGenerator:
         return self._element('a',text,props)
 
     def table(self, tabularData):
-        htmlBody = ''
+        htmlBody = self._tableBody(tabularData)
+        return self._element('table', htmlBody)
+
+    def _tableBody(self, tabularData):
+        htmlRows = ''
         for row in tabularData:
-            htmlRow = ''
-            for cell in row:
-                htmlCell = self._element('td',cell)
-                htmlRow += htmlCell
-            htmlBody += self._element('tr',htmlRow)
-        htmlTable = self._element('tbody',htmlBody)
-        return self._element('table',htmlTable)
+            htmlRows += self._tableRow(row)
+        return self._element('tbody', htmlRows)
+
+    def _tableRow(self, row):
+        htmlCells = ''
+        for cell in row:
+            htmlCells += self._tableCell(cell)
+        return self._element('tr', htmlCells)
+
+    def _tableCell(self, cell):
+        return self._element('td', cell)
