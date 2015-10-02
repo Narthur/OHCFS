@@ -47,4 +47,5 @@ class Factory:
 
     def makeWebApp(self):
         htmlGenerator = self.makeHtmlGenerator()
-        return WebApp.WebApp(htmlGenerator)
+        canvasserManager = self.makeCanvasserManager()
+        return WebApp.WebApp(htmlGenerator,canvasserManager)
