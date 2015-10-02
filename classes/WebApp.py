@@ -1,6 +1,7 @@
 class WebApp:
-    def __init__(self, htmlGenerator):
+    def __init__(self, htmlGenerator, canvasserManager):
         self.htmlGenerator = htmlGenerator
+        self.canvasserManager = canvasserManager
 
     def getOutput(self, fieldStorage):
         self.fieldStorage = fieldStorage
@@ -12,6 +13,8 @@ class WebApp:
         headLink = self.htmlGenerator.link('app.py','OHCFS',classes)
         html += self.htmlGenerator.h1(headLink)
         html += self._navigation()
+        if self.fieldStorage.getvalue('function') == 'canvassers':
+            self.canvasserManager.getEveryoneFromFilters([])
         return html
 
     def _navigation(self):

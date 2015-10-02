@@ -8,7 +8,7 @@ class TestWebApp(unittest.TestCase):
         self.mockFieldStorage = Mock()
         self.mockHtmlGenerator = Mock({'h1':'heading','link':'link','list':'list'})
         self.mockCanvasserManager = Mock()
-        self.mockedWebApp = WebApp.WebApp(self.mockHtmlGenerator)
+        self.mockedWebApp = WebApp.WebApp(self.mockHtmlGenerator, self.mockCanvasserManager)
 
     def _assertContains(self, needle, haystack):
         contains = haystack.count(needle) > 0
@@ -52,6 +52,8 @@ class TestWebApp(unittest.TestCase):
         self._getMockedOutput()
         self.mockHtmlGenerator.mockCheckCall(3,'link','app.py?function=daily', 'Daily', None)
 
-    def PASStestGetsEveryoneFromFilters(self):
-        self.mockCanvasserManager.mockCheckCall(0,'getEveryoneFromFilters')
+    def testGetsEveryoneFromFilters(self):
+        fieldStorage = Mock({'getvalue':'canvassers'})
+        self.mockedWebApp.getOutput(fieldStorage)
+        self.mockCanvasserManager.mockCheckCall(0,'getEveryoneFromFilters',[])
 
