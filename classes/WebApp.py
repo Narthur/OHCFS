@@ -17,12 +17,15 @@ class WebApp:
         return header
 
     def _pageBody(self):
-        if self.fieldStorage.getvalue('function') == 'canvassers':
+        if self._isPage('canvassers'):
             attributeNames = self.canvasserManager.getCanvasserAttributeNames()
             canvassers = self.canvasserManager.getEveryoneFromFilters([])
             return self.htmlGenerator.table(canvassers, attributeNames)
         else:
             return ''
+
+    def _isPage(self, slug):
+        return self.fieldStorage.getvalue('function') == slug
 
     def _navigation(self):
         links = list()
@@ -36,5 +39,4 @@ class WebApp:
         return link
 
     def _makeLinkClasses(self, slug):
-        isCurrent = self.fieldStorage.getvalue('function') == slug
-        return 'current' if isCurrent else None
+        return 'current' if self._isPage(slug) else None
