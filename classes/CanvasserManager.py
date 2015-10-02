@@ -7,20 +7,18 @@ class CanvasserManager:
 
     def _matchingCanvassers(self, filters):
         matches = []
-        for filter in filters:
-            filterMatches = self._getCanvassersFromFilter(filter)
+        for f in filters:
+            filterMatches = self._getCanvassersFromFilter(f)
             matches += filterMatches
         return matches
 
-    def _getCanvassersFromFilter(self, filter):
+    def _getCanvassersFromFilter(self, f):
         students = self.db.getAllCanvassers()
-        matches = []
-        names = filter.split(' ')
+        names = f.split(' ')
         if len(names) == 1:
-            matches += self._findPeopleMatchingSingleName(names, students)
+            return self._findPeopleMatchingSingleName(names, students)
         else:
-            matches += self._findPeopleMatchingTwoNames(names, students)
-        return matches
+            return self._findPeopleMatchingTwoNames(names, students)
 
     @staticmethod
     def _findPeopleMatchingTwoNames(names, students):
