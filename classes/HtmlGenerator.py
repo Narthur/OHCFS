@@ -29,3 +29,14 @@ class HtmlGenerator:
         else:
             props = {'href':url,'class':classes}
         return self._element('a',text,props)
+
+    def table(self, tabularData):
+        htmlBody = ''
+        for row in tabularData:
+            htmlRow = ''
+            for cell in row:
+                htmlCell = self._element('td',cell)
+                htmlRow += htmlCell
+            htmlBody += self._element('tr',htmlRow)
+        htmlTable = self._element('tbody',htmlBody)
+        return self._element('table',htmlTable)

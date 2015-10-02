@@ -25,3 +25,12 @@ class TestHtmlGenerator(unittest.TestCase):
         link = self.htmlGenerator.link('google.com','Google','current')
         expected = '<a href="google.com" class="current">Google</a>'
         self.assertEqual(link,expected)
+
+    def testTableMethodTakesTabularData(self):
+        self.htmlGenerator.table('data')
+
+    def testTableMethodReturnsTable(self):
+        data = [['cell']]
+        expected = '<table><tbody><tr><td>cell</td></tr></tbody></table>'
+        table = self.htmlGenerator.table(data)
+        self.assertEqual(expected,table)
