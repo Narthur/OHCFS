@@ -15,7 +15,7 @@ class WebApp:
         html += self._navigation()
         if self.fieldStorage.getvalue('function') == 'canvassers':
             canvassers = self.canvasserManager.getEveryoneFromFilters([])
-            html += self.htmlGenerator.list(canvassers)
+            html += self.htmlGenerator.table(canvassers)
         return html
 
     def _navigation(self):
