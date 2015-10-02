@@ -12,7 +12,10 @@ class TestWebApp(unittest.TestCase):
             'list':'navList',
             'table':'table'
         })
-        self.mockCanvasserManager = Mock({'getEveryoneFromFilters':[['everyone']]})
+        self.mockCanvasserManager = Mock({
+            'getEveryoneFromFilters':[['everyone']],
+            'getCanvasserAttributeNames':['names']
+        })
         self.mockedWebApp = WebApp.WebApp(self.mockFieldStorage, self.mockHtmlGenerator, self.mockCanvasserManager)
 
     def _assertContains(self, needle, haystack):
@@ -69,7 +72,7 @@ class TestWebApp(unittest.TestCase):
 
     def testMakesTableFromEveryone(self):
         self._getMockedOutput('canvassers')
-        self.mockHtmlGenerator.mockCheckCall(5,'table',[['everyone']])
+        self.mockHtmlGenerator.mockCheckCall(5,'table',[['everyone']],['names'])
 
     def testOutputsCanvasserList(self):
         output = self._getMockedOutput('canvassers')
