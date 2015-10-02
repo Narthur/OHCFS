@@ -1,5 +1,5 @@
 import unittest, sys
-from classes import Factory, Gui, StudentCli
+from classes import Factory, TkGui, StudentCli
 
 
 class TestFactory(unittest.TestCase):
@@ -11,7 +11,7 @@ class TestFactory(unittest.TestCase):
 
     def PASStestMakeGui(self):
         gui = self.factory.makeGui()
-        self.assertIsInstance(gui, Gui.Gui)
+        self.assertIsInstance(gui, TkGui.TkGui)
 
     def PASStestMakeArgParserMakesStudentCli(self):
         sys.argv = ['ohcfs','student','add','john','doe']

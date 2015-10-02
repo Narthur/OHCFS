@@ -1,4 +1,4 @@
-from classes import Gui, TkinterInterface, StudentCli, ArgParser, Database, SqliteInterface
+from classes import TkGui, TkinterInterface, StudentCli, ArgParser, Database, SqliteInterface
 from classes import TerminalInterface, Tabulate, CanvasserManager, WebApp, HtmlGenerator
 import sys
 
@@ -14,7 +14,7 @@ class Factory:
     def makeGui(self):
         tk = self.makeTkinterInterface()
 
-        return Gui.Gui(tk)
+        return TkGui.TkGui(tk)
 
     @staticmethod
     def makeSqliteInterface():
