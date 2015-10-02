@@ -15,9 +15,15 @@ class WebApp:
         return html
 
     def _navigation(self):
-        classes = self._makeLinkClasses('canvassers')
-        link = self.htmlGenerator.link('app.py?function=canvassers', 'Manage Canvassers', classes)
-        return self.htmlGenerator.list([link])
+        links = list()
+        links.append(self._makeNavLink('canvassers','Manage Canvassers'))
+        links.append(self._makeNavLink('daily','Daily'))
+        return self.htmlGenerator.list(links)
+
+    def _makeNavLink(self, slug, title):
+        classes = self._makeLinkClasses(slug)
+        link = self.htmlGenerator.link('app.py?function={}'.format(slug), title, classes)
+        return link
 
     def _makeLinkClasses(self,slug):
         isCurrent = self.fieldStorage.getvalue('function') == slug

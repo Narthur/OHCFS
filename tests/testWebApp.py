@@ -26,7 +26,7 @@ class TestWebApp(unittest.TestCase):
 
     def testMakesList(self):
         self._getMockedOutput()
-        self.mockHtmlGenerator.mockCheckCall(3,'list',['link'])
+        self.mockHtmlGenerator.mockCheckCall(4,'list',['link','link'])
 
     def testReturnsList(self):
         self._assertContains('list',self._getMockedOutput())
@@ -48,5 +48,10 @@ class TestWebApp(unittest.TestCase):
         self._getMockedOutput()
         self.mockHtmlGenerator.mockCheckCall(1,'h1','link')
 
+    def testMakesDailyLink(self):
+        self._getMockedOutput()
+        self.mockHtmlGenerator.mockCheckCall(3,'link','app.py?function=daily', 'Daily', None)
+
     def PASStestGetsEveryoneFromFilters(self):
         self.mockCanvasserManager.mockCheckCall(0,'getEveryoneFromFilters')
+
