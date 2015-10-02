@@ -1,6 +1,6 @@
 import unittest
 from classes import Database
-from mock import Mock, ReturnValues
+from mock import Mock  # ReturnValues
 
 
 class TestDatabase(unittest.TestCase):
