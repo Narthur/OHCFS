@@ -1,4 +1,5 @@
-import unittest, sys
+import unittest
+import sys
 from classes import Factory, TkGui, StudentCli
 
 
@@ -14,10 +15,9 @@ class TestFactory(unittest.TestCase):
         self.assertIsInstance(gui, TkGui.TkGui)
 
     def PASStestMakeArgParserMakesStudentCli(self):
-        sys.argv = ['ohcfs','student','add','john','doe']
+        sys.argv = ['ohcfs', 'student', 'add', 'john', 'doe']
         argHandler = self.factory.makeArgHandler()
         self.assertIsInstance(argHandler, StudentCli.StudentCli)
 
     def testHasMakeWebAppMethod(self):
-        self.assertTrue(hasattr(self.factory,'makeWebApp'))
-        
+        self.assertTrue(hasattr(self.factory, 'makeWebApp'))
