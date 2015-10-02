@@ -1,3 +1,5 @@
+import numpy
+
 class Database:
     def __init__(self, sqliteInterface):
         self.sqlite = sqliteInterface
@@ -49,3 +51,10 @@ class Database:
         format = "UPDATE student SET isLeader=1 WHERE firstName='{0}' AND lastName='{1}'"
         query = format.format(firstName, lastName)
         self.sqlite.executeQuery(query)
+
+    def getColumnNames(self, table):
+        formatString = "PRAGMA table_info({})"
+        query = formatString.format(table)
+        result = self.sqlite.executeQuery(query)
+        column = [row[1] for row in result]
+        return column

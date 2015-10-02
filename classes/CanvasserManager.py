@@ -48,3 +48,6 @@ class CanvasserManager:
 
     def addStudent(self, firstName, lastName):
         self.db.addStudent(firstName,lastName)
+
+    def getCanvasserAttributeNames(self):
+        return self.db.getColumnNames('student')

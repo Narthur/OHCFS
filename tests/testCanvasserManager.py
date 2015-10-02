@@ -6,7 +6,10 @@ from mock import Mock, ReturnValues
 class TestCanvasserManager(unittest.TestCase):
     def setUp(self):
         self.mockStudents = [[0,'John','Doe',0],[1,'Jo','Doe',1]]
-        self.mockDb = Mock({'getAllCanvassers':self.mockStudents})
+        self.mockDb = Mock({
+            'getAllCanvassers':self.mockStudents,
+            'getColumnNames':['names']
+        })
         self.mockedCanvasserManager = CanvasserManager.CanvasserManager(self.mockDb)
 
     def testHasGetFilteredStudentsMethod(self):
@@ -43,3 +46,15 @@ class TestCanvasserManager(unittest.TestCase):
         filters = ['john']
         students = self.mockedCanvasserManager.getEveryoneFromFilters(filters)
         self.assertEqual(students, [[0,'John','Doe',0]])
+
+    def testHasGetCanvassarAttributeNamesMethod(self):
+        self.mockedCanvasserManager.getCanvasserAttributeNames()
+
+    def testGetCanvasserAttributeNamesGetsThem(self):
+        self.mockedCanvasserManager.getCanvasserAttributeNames()
+        self.mockDb.mockCheckCall(0,'getColumnNames','student')
+
+    def testReturnsCanvasserAttributeNames(self):
+        actual = self.mockedCanvasserManager.getCanvasserAttributeNames()
+        expected = ['names']
+        self.assertEqual(actual,expected)

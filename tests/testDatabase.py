@@ -48,3 +48,27 @@ class TestDatabase(unittest.TestCase):
             'executeQuery',
             "UPDATE student SET isLeader=1 WHERE firstName='John' AND lastName='Doe'"
         )
+
+    def testGetColumnNamesMethodGetsTableColumnData(self):
+        self.mockedDatabase.getColumnNames('table')
+        self.mockSqliteInterface.mockCheckCall(
+            0,
+            'executeQuery',
+            "PRAGMA table_info(table)"
+        )
+
+    def testGetColumnNamesMethodReturnsColumnNames(self):
+        mockResult = [
+            [0, 'vehicleId', 'INTEGER', 0, None, 1],
+            [1, 'make', 'TEXT', 0, None, 0],
+            [2, 'model', 'TEXT', 1, None, 0],
+            [3, 'year', 'INTEGER', 0, None, 0],
+            [4, 'color', 'TEXT', 0, None, 0],
+            [5, 'vin', 'TEXT', 0, None, 0]
+        ]
+
+        sqlite = Mock({'executeQuery': mockResult})
+        expected = ['vehicleId', 'make', 'model', 'year', 'color', 'vin']
+        db = Database.Database(sqlite)
+        actual = db.getColumnNames('table')
+        self.assertEqual(expected, actual)
