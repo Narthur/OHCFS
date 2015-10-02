@@ -65,7 +65,7 @@ class TestWebApp(unittest.TestCase):
 
     def testGetsEveryoneFromFilters(self):
         self._getMockedOutput('canvassers')
-        self.mockCanvasserManager.mockCheckCall(0,'getEveryoneFromFilters',[])
+        self.mockCanvasserManager.mockCheckCall(1,'getEveryoneFromFilters',[])
 
     def testMakesTableFromEveryone(self):
         self._getMockedOutput('canvassers')
@@ -74,3 +74,7 @@ class TestWebApp(unittest.TestCase):
     def testOutputsCanvasserList(self):
         output = self._getMockedOutput('canvassers')
         self._assertContains('table',output)
+
+    def testGetsCanvasserAttributeNames(self):
+        self._getMockedOutput('canvassers')
+        self.mockCanvasserManager.mockCheckCall(0,'getCanvasserAttributeNames')

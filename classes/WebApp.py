@@ -17,6 +17,7 @@ class WebApp:
 
     def _pageBody(self):
         if self.fieldStorage.getvalue('function') == 'canvassers':
+            self.canvasserManager.getCanvasserAttributeNames()
             canvassers = self.canvasserManager.getEveryoneFromFilters([])
             return self.htmlGenerator.table(canvassers)
         else:
