@@ -42,7 +42,7 @@ class TestStudentCli(unittest.TestCase):
 
     def testAddsStudent(self):
         self._initWithAddSubCommand()
-        self.mockStudentManager.mockCheckCall(0,'addStudent','john','doe')
+        self.mockStudentManager.mockCheckCall(0,'addCanvasser','john','doe')
 
     def testGetsAllStudentsWhenConverting(self):
         self._initWithConvertSubCommand()
@@ -50,7 +50,7 @@ class TestStudentCli(unittest.TestCase):
 
     def testConvertsStudent(self):
         self._initWithConvertSubCommand()
-        self.mockStudentManager.mockCheckCall(1,'convertStudentToLeader','John','Doe')
+        self.mockStudentManager.mockCheckCall(1,'markCanvasserAsLeader','John','Doe')
 
     def testOutputsSelectionHead(self):
         self._initWithConvertSubCommand()
