@@ -14,33 +14,34 @@ class CanvasserManager:
 
     def _getCanvassersFromFilter(self, f):
         names = f.split(' ')
+        students = self.db.getAllCanvassers()
+        matches = list()
+        for student in students:
+            if self._doNamesMatchStudent(names, student):
+                matches.append(student)
+        return matches
+
+    @staticmethod
+    def _doNamesMatchStudent(names, student):
+        names = [name.lower() for name in names]
+        studentFirst = student[1].lower()
+        studentLast = student[2].lower()
         if len(names) == 1:
-            return self._findPeopleMatchingSingleName(names)
+            return CanvasserManager._doesSingleNameMatchStudent(names, studentFirst, studentLast)
         else:
-            return self._findPeopleMatchingTwoNames(names)
+            return CanvasserManager._doTwoNamesMatchStudent(names, studentFirst, studentLast)
 
-    def _findPeopleMatchingTwoNames(self, names):
-        students = self.db.getAllCanvassers()
-        matches = []
-        firstName = names[0].lower()
-        lastName = names[1].lower()
-        for student in students:
-            matchesFirstName = student[1].lower().count(firstName) > 0
-            matchesLastName = student[2].lower().count(lastName) > 0
-            if matchesFirstName and matchesLastName:
-                matches.append(student)
-        return matches
+    @staticmethod
+    def _doTwoNamesMatchStudent(names, studentFirst, studentLast):
+        matchesFirstName = studentFirst.count(names[0]) > 0
+        matchesLastName = studentLast.count(names[1]) > 0
+        return matchesFirstName and matchesLastName
 
-    def _findPeopleMatchingSingleName(self, names):
-        students = self.db.getAllCanvassers()
-        matches = []
-        singleName = names[0].lower()
-        for student in students:
-            matchesFirstName = student[1].lower().count(singleName) > 0
-            matchesLastName = student[2].lower().count(singleName) > 0
-            if matchesFirstName or matchesLastName:
-                matches.append(student)
-        return matches
+    @staticmethod
+    def _doesSingleNameMatchStudent(names, studentFirst, studentLast):
+        matchesFirstName = studentFirst.count(names[0]) > 0
+        matchesLastName = studentLast.count(names[0]) > 0
+        return matchesFirstName or matchesLastName
 
     def markCanvasserAsLeader(self, firstName, lastName):
         self.db.markCanvasserAsLeader(firstName, lastName)
