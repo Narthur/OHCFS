@@ -23,18 +23,18 @@ class CanvasserManager:
 
     def _doNamesMatchStudent(self, names, student):
         if len(names) == 1:
-            return self._doesSingleNameMatchStudent(names, student[1], student[2])
+            return self._doesSingleNameMatchStudent(names, student)
         else:
-            return self._doTwoNamesMatchStudent(names, student[1], student[2])
+            return self._doTwoNamesMatchStudent(names, student)
 
-    def _doTwoNamesMatchStudent(self, names, studentFirst, studentLast):
-        matchesFirstName = self._doNamesMatch(names[0], studentFirst)
-        matchesLastName = self._doNamesMatch(names[1], studentLast)
+    def _doTwoNamesMatchStudent(self, names, student):
+        matchesFirstName = self._doNamesMatch(names[0], student[1])
+        matchesLastName = self._doNamesMatch(names[1], student[2])
         return matchesFirstName and matchesLastName
 
-    def _doesSingleNameMatchStudent(self, names, studentFirst, studentLast):
-        matchesFirstName = self._doNamesMatch(names[0], studentFirst)
-        matchesLastName = self._doNamesMatch(names[0], studentLast)
+    def _doesSingleNameMatchStudent(self, names, student):
+        matchesFirstName = self._doNamesMatch(names[0], student[1])
+        matchesLastName = self._doNamesMatch(names[0], student[2])
         return matchesFirstName or matchesLastName
 
     @staticmethod
