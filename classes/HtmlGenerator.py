@@ -1,10 +1,14 @@
 class HtmlGenerator:
+    def __init__(self):
+        pass
+
     def _element(self, name, content, props=None):
         propsMarkup = self._propsMarkup(props)
 
         return '<{}{}>{}</{}>'.format(name, propsMarkup, content, name)
 
-    def _propsMarkup(self, props):
+    @staticmethod
+    def _propsMarkup(props):
         propsMarkup = ''
         if props:
             for prop, value in props.iteritems():
@@ -67,6 +71,5 @@ class HtmlGenerator:
         return self._element('td', cell)
 
     def div(self, content, classes=None):
-        if classes:
-            props = {'class': classes}
+        props = {'class': classes} if classes else None
         return self._element('div', content, props)
