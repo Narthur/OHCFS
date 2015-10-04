@@ -12,34 +12,34 @@ class TestHtmlGenerator(unittest.TestCase):
         self.assertEqual(heading, expected)
 
     def testListMethodReturnsList(self):
-        list = self.htmlGenerator.list([1,2,3])
+        actual = self.htmlGenerator.list([1, 2, 3])
         expected = '<ul><li>1</li><li>2</li><li>3</li></ul>'
-        self.assertEqual(list,expected)
+        self.assertEqual(actual, expected)
 
     def testLinkMethodReturnsLink(self):
-        link = self.htmlGenerator.link('google.com','Google')
+        link = self.htmlGenerator.link('google.com', 'Google')
         expected = '<a href="google.com">Google</a>'
-        self.assertEqual(link,expected)
+        self.assertEqual(link, expected)
 
     def testLinkMethodWithClass(self):
-        link = self.htmlGenerator.link('google.com','Google','current')
+        link = self.htmlGenerator.link('google.com', 'Google', 'current')
         expected = '<a href="google.com" class="current">Google</a>'
-        self.assertEqual(link,expected)
+        self.assertEqual(link, expected)
 
     def testTableMethodReturnsTable(self):
         data = [['cell']]
         expected = '<table><tbody><tr><td>cell</td></tr></tbody></table>'
         table = self.htmlGenerator.table(data)
-        self.assertEqual(expected,table)
+        self.assertEqual(expected, table)
 
     def testTableMethodAllowsAdditionOfHeaders(self):
         data = [['cell']]
         heads = ['head']
         expected = '<table><thead><tr><th>head</th></tr></thead><tbody><tr><td>cell</td></tr></tbody></table>'
         table = self.htmlGenerator.table(data, heads)
-        self.assertEqual(expected,table)
+        self.assertEqual(expected, table)
 
     def testDivMethod(self):
-        actual = self.htmlGenerator.div('content','class')
+        actual = self.htmlGenerator.div('content', 'class')
         expected = '<div class="class">content</div>'
-        self.assertEqual(expected,actual)
+        self.assertEqual(expected, actual)
