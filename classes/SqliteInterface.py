@@ -1,4 +1,5 @@
-import os.path, sqlite3
+import os.path
+import sqlite3
 
 
 class SqliteInterface:
