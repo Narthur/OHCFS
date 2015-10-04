@@ -28,10 +28,7 @@ class HtmlGenerator:
         return self._element('ul', itemMarkup)
 
     def link(self, url, text, classes=None):
-        if classes:
-            props = {'href': url, 'class': classes}
-        else:
-            props = {'href': url}
+        props = {'href': url, 'class': classes} if classes else {'href': url}
         return self._element('a', text, props)
 
     def table(self, tabularData, headings=None):
