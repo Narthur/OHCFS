@@ -36,12 +36,12 @@ class StudentCli:
 
     def _processStudentCommands(self):
         if self.subCommand == 'add':
-            self._addStudents()
+            self._addCanvasser()
         if self.subCommand == 'list':
             students = self.studentManager.getEveryoneFromFilters(self.filters)
             self._displaySelection(students)
 
-    def _addStudents(self):
+    def _addCanvasser(self):
         for filter in self.filters:
             names = filter.split(' ')
             self.studentManager.addCanvasser(names[0], names[1])
