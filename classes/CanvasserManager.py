@@ -21,27 +21,28 @@ class CanvasserManager:
                 matches.append(student)
         return matches
 
-    @staticmethod
-    def _doNamesMatchStudent(names, student):
+    def _doNamesMatchStudent(self, names, student):
         names = [name.lower() for name in names]
         studentFirst = student[1].lower()
         studentLast = student[2].lower()
         if len(names) == 1:
-            return CanvasserManager._doesSingleNameMatchStudent(names, studentFirst, studentLast)
+            return self._doesSingleNameMatchStudent(names, studentFirst, studentLast)
         else:
-            return CanvasserManager._doTwoNamesMatchStudent(names, studentFirst, studentLast)
+            return self._doTwoNamesMatchStudent(names, studentFirst, studentLast)
 
-    @staticmethod
-    def _doTwoNamesMatchStudent(names, studentFirst, studentLast):
-        matchesFirstName = studentFirst.count(names[0]) > 0
-        matchesLastName = studentLast.count(names[1]) > 0
+    def _doTwoNamesMatchStudent(self, names, studentFirst, studentLast):
+        matchesFirstName = self._doNamesMatch(names[0], studentFirst)
+        matchesLastName = self._doNamesMatch(names[1], studentLast)
         return matchesFirstName and matchesLastName
 
-    @staticmethod
-    def _doesSingleNameMatchStudent(names, studentFirst, studentLast):
-        matchesFirstName = studentFirst.count(names[0]) > 0
-        matchesLastName = studentLast.count(names[0]) > 0
+    def _doesSingleNameMatchStudent(self, names, studentFirst, studentLast):
+        matchesFirstName = self._doNamesMatch(names[0], studentFirst)
+        matchesLastName = self._doNamesMatch(names[0], studentLast)
         return matchesFirstName or matchesLastName
+
+    @staticmethod
+    def _doNamesMatch(needleName, haystackName):
+        return haystackName.count(needleName) > 0
 
     def markCanvasserAsLeader(self, firstName, lastName):
         self.db.markCanvasserAsLeader(firstName, lastName)
