@@ -8,7 +8,7 @@ class SqliteInterface:
 
     def connectToDb(self):
         PATH = './ohcfs.db'
-        if os.path.isfile(PATH) != True:
+        if not os.path.isfile(PATH):
             self.dbConnection = sqlite3.connect(PATH)
             self.c = self.dbConnection.cursor()
             self.initializeDatabase()

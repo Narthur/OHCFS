@@ -4,7 +4,11 @@
 # - Execute `chmod +x launchWebApp.pyw`
 # - Make sure `.pyw` files are associated with Python Launcher on Unix or Python.exe on Windows
 
-import BaseHTTPServer, CGIHTTPServer, cgitb, webbrowser
+import BaseHTTPServer
+import CGIHTTPServer
+import cgitb
+import webbrowser
+
 cgitb.enable()
 
 server = BaseHTTPServer.HTTPServer
