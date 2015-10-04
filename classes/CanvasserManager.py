@@ -22,13 +22,10 @@ class CanvasserManager:
         return matches
 
     def _doNamesMatchStudent(self, names, student):
-        names = [name.lower() for name in names]
-        studentFirst = student[1].lower()
-        studentLast = student[2].lower()
         if len(names) == 1:
-            return self._doesSingleNameMatchStudent(names, studentFirst, studentLast)
+            return self._doesSingleNameMatchStudent(names, student[1], student[2])
         else:
-            return self._doTwoNamesMatchStudent(names, studentFirst, studentLast)
+            return self._doTwoNamesMatchStudent(names, student[1], student[2])
 
     def _doTwoNamesMatchStudent(self, names, studentFirst, studentLast):
         matchesFirstName = self._doNamesMatch(names[0], studentFirst)
@@ -42,7 +39,7 @@ class CanvasserManager:
 
     @staticmethod
     def _doNamesMatch(needleName, haystackName):
-        return haystackName.count(needleName) > 0
+        return haystackName.lower().count(needleName.lower()) > 0
 
     def markCanvasserAsLeader(self, firstName, lastName):
         self.db.markCanvasserAsLeader(firstName, lastName)
