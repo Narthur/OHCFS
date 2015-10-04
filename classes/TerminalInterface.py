@@ -1,8 +1,13 @@
-class TerminalInterface():
-    def output(self, text):
+class TerminalInterface:
+    def __init__(self):
+        pass
+
+    @staticmethod
+    def output(text):
         print text
 
-    def requestResponse(self, text):
+    @staticmethod
+    def requestResponse(text):
         return raw_input(text + ' ')
 
     def outputMainHead(self, text):
@@ -10,8 +15,9 @@ class TerminalInterface():
         for row in head:
             self.output(row)
 
-    def _makeMainHead(self, text):
+    @staticmethod
+    def _makeMainHead(text):
         length = 30
         bar = length * '='
         centeredName = text.center(length)
-        return ['',bar,centeredName,bar]
+        return ['', bar, centeredName, bar]
