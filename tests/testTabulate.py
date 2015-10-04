@@ -1,6 +1,7 @@
 import unittest
 from classes import Tabulate
 
+
 class TestTabulate(unittest.TestCase):
     def setUp(self):
         self.tabulate = Tabulate.Tabulate()
